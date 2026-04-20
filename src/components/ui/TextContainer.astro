@@ -1,0 +1,42 @@
+---
+// src/components/ui/TextContainer.astro
+// Source: Figma node 108:327 — Text-container
+// Used in About page "Who We Are" pillar columns
+export interface Props {
+  title: string;
+  body: string;
+}
+const { title, body } = Astro.props;
+---
+
+<div class="text-container">
+  <div class="text-container__dot" aria-hidden="true"></div>
+  <h3 class="text-container__title">{title}</h3>
+  <p class="text-container__body">{body}</p>
+</div>
+
+<style>
+  .text-container {
+    display: flex; flex-direction: column; justify-content: space-between;
+    gap: var(--spacing-xs); padding: var(--spacing-xs);
+    min-width: 250px;
+  }
+  .text-container__dot {
+    width: 32px; height: 3px; /* Figma node 108:249 */
+    background: var(--color-blue);
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+  .text-container__title {
+    font-size: var(--font-h3); /* Heading/3 — Figma node 108:250 */
+    font-weight: var(--fw-bold);
+    color: var(--color-surface);
+    line-height: 1;
+  }
+  .text-container__body {
+    font-size: var(--font-body-sm); /* 11px Body/Small — Figma node 108:251 */
+    color: var(--color-text-faint);
+    line-height: var(--spacing-md); /* 16px */
+    max-width: 250px;
+  }
+</style>

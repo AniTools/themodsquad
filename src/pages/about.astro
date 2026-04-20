@@ -1,0 +1,580 @@
+---
+// src/pages/about.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NavBar from '../components/NavBar.astro';
+import Partners from '../components/sections/Partners.astro';
+import Footer from '../components/Footer.astro';
+
+const pillars = [
+  {
+    title: 'Manufacturing-Led Strategy',
+    desc: 'Factory layout, workflow logic, and production engineering determine whether a platform scales predictably.',
+  },
+  {
+    title: 'Integrated Execution',
+    desc: 'Product design, factory capability, and capital planning aligned from day one — not patched together after.',
+  },
+  {
+    title: 'Hands-On Partnership',
+    desc: 'We operate in real production environments. Not theoretical advisory.',
+  },
+];
+
+const stats = [
+  { value: '22',   label: 'Factories Launched',       suffix: '+' },
+  { value: '1550', label: 'Manufacturing Jobs Enabled', suffix: '+' },
+  { value: '9',    label: 'M+ SF Annual Capacity',     suffix: 'M+' },
+  { value: '1464', label: 'K+ SF Designed',            suffix: 'K+' },
+];
+
+const values = [
+  { title: 'Integrity & Transparency' },
+  { title: 'Engineering-Driven Innovation' },
+  { title: 'Sustainable Manufacturing Systems' },
+  { title: 'Collaborative Partnership' },
+  { title: 'Excellence in Execution' },
+];
+
+const team = [
+  {
+    img: '/img/team/JasonCarter_founder.webp',
+    role: 'Industry & Factory Platform Leadership',
+    name: 'Jason Carter',
+    bio: 'A modular manufacturing leader with over two decades of experience launching and operating offsite construction facilities. He has overseen multi-plant operations and large-scale production platforms across housing, hospitality, and residential markets — bringing deep expertise in DFMA-driven manufacturing, production system evolution, and automation integration.',
+    email: 'jcarter@themodsquadteam.com',
+  },
+  {
+    img: '/img/team/JaimeMillan_COO.webp',
+    imgPosition: 'top',
+    role: 'Production Systems & Factory Development',
+    name: 'Jaime Millan',
+    bio: 'Leads factory development strategy and client execution at The Mod Squad Team, focusing on production system engineering and operational performance. His work bridges product design, manufacturing flow, labor modeling, and automation integration — supporting modular startups and scaling manufacturers in building efficient, repeatable, and financially viable production platforms.',
+    email: 'jmillan@themodsquadteam.com',
+  },
+  {
+    img: '/img/team/RogerLankford_CFo.webp',
+    role: 'Financial Strategy & Capital Stewardship',
+    name: 'Roger Lankford',
+    bio: 'Brings over 35 years of experience in financial planning, underwriting, and capital strategy across complex development and infrastructure initiatives. His background in structuring multi-million-dollar programs and long-term financial stewardship connects operational execution with responsible capital planning.',
+    email: 'rlankford@themodsquadteam.com',
+  },
+  {
+    img: '/img/team/ClairsonDutra_StructuralEngineering.webp',
+    role: 'Structural Engineering & Technical Systems',
+    name: 'Dr. Clairson Dutra',
+    bio: 'A structural engineer with over 20 years of experience in steel, concrete, and wood systems for multifamily and modular construction. As a PhD engineer and licensed builder, he brings deep technical expertise to factory-based building platforms — supporting the alignment of structural design, product standardization, and manufacturing feasibility.',
+    email: 'clairson@themodsquadteam.com',
+  },
+];
+
+const jobCategories = [
+  {
+    category: 'Executive Search',
+    jobs: [
+      { title: 'General Manager', location: 'South Region', type: 'Full-time · On-site' },
+      { title: 'VP of Manufacturing', location: 'Remote / Hybrid', type: 'Full-time' },
+    ],
+  },
+  {
+    category: 'Operations & Production',
+    jobs: [
+      { title: 'Production Manager', location: 'Southeast', type: 'Full-time · On-site' },
+      { title: 'Factory Design Engineer', location: 'Remote OK', type: 'Full-time' },
+    ],
+  },
+  {
+    category: 'Consulting & Advisory',
+    jobs: [
+      { title: 'Modular Construction Consultant', location: 'Remote', type: 'Contract' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Modular Manufacturing Experts & Factory Systems Engineers | About The Mod Squad"
+  description="The Mod Squad Team are factory designers, production engineers, and modular manufacturing specialists helping companies launch and scale high-performance offsite construction operations."
+>
+  <NavBar activePage="about" />
+  <main>
+
+    <!-- ① About Hero -->
+    <section class="about-hero">
+      <div class="about-hero__inner">
+
+        <!-- Left -->
+        <div class="about-hero__left slide-left">
+          <div class="eyebrow">
+            <span class="eyebrow-line"></span>
+            <span class="eyebrow-text">Who We Are</span>
+          </div>
+          <h1 class="about-hero__h1">
+            Factory Designers.<br/>Production Engineers.<br/><span class="about-hero__h1--blue">Modular Operators.</span>
+          </h1>
+          <p class="about-hero__desc">
+            The Mod Squad Team is a modular manufacturing and factory systems consultancy specializing in the design, launch, and scaling of offsite construction production platforms. We are not traditional construction consultants — we work within the real constraints of labor, equipment, throughput, and capital.
+          </p>
+          <div class="about-hero__pillars">
+            {pillars.map(p => (
+              <div class="pillar">
+                <div class="pillar__bar"></div>
+                <p class="pillar__title">{p.title}</p>
+                <p class="pillar__desc">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Right -->
+        <div class="about-hero__right slide-right">
+          <div class="about-stats">
+            {stats.map((s, i) => (
+              <div class="about-stat" style={`--delay: ${i * 100}ms`} data-val={s.value} data-suffix={s.suffix} data-prefix={s.prefix ?? ''}>
+                <p class="about-stat__value">{s.prefix ?? ''}{s.value}{s.suffix}</p>
+                <p class="about-stat__label">{s.label}</p>
+                <div class="about-stat__line"></div>
+              </div>
+            ))}
+          </div>
+          <blockquote class="about-quote">
+            <p class="about-quote__text">"We turn modular vision into bankable, buildable, and scalable production systems."</p>
+            <cite class="about-quote__cite">— The Mod Squad Team</cite>
+          </blockquote>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ② Mission & Values -->
+    <section class="about-mission">
+      <div class="about-mission__inner">
+
+        <div class="about-mission__col slide-left">
+          <div class="eyebrow">
+            <span class="eyebrow-line eyebrow-line--blue"></span>
+            <span class="eyebrow-text eyebrow-text--blue">Our Mission</span>
+          </div>
+          <h2 class="about-mission__title">Built to Empower Modular Manufacturers.</h2>
+          <p class="about-mission__desc">
+            To empower modular manufacturers with integrated factory, operational, and capital strategies that drive performance, scalability, and long-term viability.
+          </p>
+          <p class="about-mission__desc">
+            Modular construction succeeds when manufacturing principles lead the strategy. Our team approaches modular through the lens of manufacturing operations — ensuring product design, factory capability, and capital planning are aligned from the start.
+          </p>
+        </div>
+
+        <div class="about-mission__col slide-right">
+          <div class="eyebrow">
+            <span class="eyebrow-line eyebrow-line--blue"></span>
+            <span class="eyebrow-text eyebrow-text--blue">Our Values</span>
+          </div>
+          <div class="about-values">
+            {values.map((v, i) => (
+              <div class="about-value" style={`--delay: ${i * 80}ms`}>
+                <span class="about-value__dot"></span>
+                <span class="about-value__text">{v.title}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ③ Team -->
+    <section class="team">
+      <div class="team__inner">
+        <div class="team__header slide-up">
+          <div class="eyebrow">
+            <span class="eyebrow-line"></span>
+            <span class="eyebrow-text">Leadership & Team</span>
+          </div>
+          <h2 class="team__title">
+            Meet the <span class="team__title--blue">Team.</span>
+          </h2>
+          <p class="team__desc">Specialists in modular manufacturing, factory engineering, production operations, finance, and supply chain strategy — who've led factory launches and platform scale-ups across North America.</p>
+        </div>
+
+        <div class="team__cards">
+          {team.map((member, i) => (
+            <div class="team-card" style={`--delay: ${i * 120}ms`}>
+              <div class="team-card__img-wrap">
+                <img src={member.img} alt={member.name} class="team-card__img" loading="lazy" style={member.imgPosition ? `object-position: ${member.imgPosition}` : undefined} />
+                <div class="team-card__img-overlay"></div>
+              </div>
+              <div class="team-card__body">
+                <div class="team-card__info">
+                  <span class="team-card__chip">{member.role}</span>
+                  <p class="team-card__name">{member.name}</p>
+                  <div class="team-card__accent"></div>
+                  <p class="team-card__bio">{member.bio}</p>
+                </div>
+                <a href={`mailto:${member.email}`} class="team-card__email">{member.email}</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ④ Partners -->
+    <Partners />
+
+    <!-- ⑤ Recruitment -->
+    <section class="recruitment">
+      <div class="recruitment__inner">
+
+        <!-- Header -->
+        <div class="recruitment__header slide-up">
+          <div class="eyebrow">
+            <span class="eyebrow-line eyebrow-line--blue"></span>
+            <span class="eyebrow-text eyebrow-text--blue">Talent Acquisition</span>
+          </div>
+          <h2 class="recruitment__title">
+            Join the <span class="recruitment__title--blue">Mod Squad.</span>
+          </h2>
+          <p class="recruitment__desc">
+            We're always looking for specialists in factory engineering, production operations, and modular construction who want to work on platforms that actually perform.
+          </p>
+        </div>
+
+        <!-- Job categories
+        <div class="recruitment__categories">
+          {jobCategories.map((cat, ci) => (
+            <div class="job-category slide-up" style={`--delay: ${ci * 100}ms`}>
+              <h3 class="job-category__title">{cat.category}</h3>
+              <div class="job-category__list">
+                {cat.jobs.map((job, ji) => (
+                  <div class="job-card">
+                    <div class="job-card__meta">
+                      <span class="job-card__chip">{job.type}</span>
+                      <span class="job-card__location">📍 {job.location}</span>
+                    </div>
+                    <p class="job-card__title">{job.title}</p>
+                    <a href="/contact" class="job-card__apply">Apply →</a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div> -->
+
+        <!-- Contact form -->
+        <div class="recruitment__contact slide-up" style="--delay: 300ms">
+          <div class="recruitment__contact-info">
+            <h3 class="recruitment__contact-title">Contact Regarding a Listing</h3>
+            <p class="recruitment__contact-desc">Reach out directly and we'll get back to you within 24 hours.</p>
+            <div class="recruitment__contact-details">
+              <a href="tel:7276475022" class="recruitment__contact-link">727-647-5022</a>
+              <a href="mailto:jcarter@themodsquadteam.com" class="recruitment__contact-link">jcarter@themodsquadteam.com</a>
+            </div>
+          </div>
+          <form class="recruitment__form" name="recruitment" method="POST" novalidate>
+            <div class="recruitment__form-row">
+              <input type="text" name="name" placeholder="Full Name*" required class="recruitment__input" />
+              <input type="tel" name="phone" placeholder="Phone" class="recruitment__input" />
+            </div>
+            <div class="recruitment__form-row">
+              <input type="email" name="email" placeholder="Email*" required class="recruitment__input" />
+              <input type="text" name="position" placeholder="Position of Interest" class="recruitment__input" />
+            </div>
+            <button type="submit" class="recruitment__submit">Submit Application</button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+/* ── Slide animations ───────────────────────────── */
+.slide-up {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.6s ease var(--delay, 0ms), transform 0.6s ease var(--delay, 0ms);
+}
+.slide-left {
+  opacity: 0; transform: translateX(-40px);
+  transition: opacity 0.6s ease var(--delay, 0ms), transform 0.6s ease var(--delay, 0ms);
+}
+.slide-right {
+  opacity: 0; transform: translateX(40px);
+  transition: opacity 0.6s ease var(--delay, 0ms), transform 0.6s ease var(--delay, 0ms);
+}
+.slide-up.is-visible,
+.slide-left.is-visible,
+.slide-right.is-visible {
+  opacity: 1; transform: translate(0);
+}
+
+/* ── About Hero ─────────────────────────────────── */
+.about-hero { background: var(--color-navy); width: 100%; }
+.about-hero__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 50px var(--pad-x);
+  display: flex; gap: 64px; align-items: flex-start;
+}
+.about-hero__left {
+  flex: 1; display: flex; flex-direction: column; gap: 32px; max-width: 640px;
+}
+.about-hero__h1 {
+  font-size: var(--font-display); font-weight: var(--fw-bold);
+  color: var(--color-white); line-height: 1.1;
+}
+.about-hero__h1--blue { color: var(--color-blue-light); }
+.about-hero__desc {
+  font-size: var(--font-body); color: var(--color-text-faint);
+  line-height: 20px; max-width: 497px;
+}
+.about-hero__pillars { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.pillar {
+  width: 250px; min-width: 200px;
+  display: flex; flex-direction: column; gap: 8px; padding: 4px;
+}
+.pillar__bar { width: 32px; height: 3px; background: var(--color-blue); border-radius: 2px; }
+.pillar__title { font-size: var(--font-h3); font-weight: var(--fw-bold); color: var(--color-surface); line-height: 1; }
+.pillar__desc  { font-size: var(--font-body-sm); color: var(--color-text-faint); line-height: 16px; max-width: 250px; }
+
+.about-hero__right { flex: 1; display: flex; flex-direction: column; gap: 32px; }
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 80px; }
+.about-stat {
+  display: flex; flex-direction: column; gap: 6px;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity 0.5s ease var(--delay, 0ms), transform 0.5s ease var(--delay, 0ms);
+}
+.about-stat.is-visible { opacity: 1; transform: translateY(0); }
+.about-stat__value { font-size: 44px; font-weight: var(--fw-bold); color: var(--color-blue-light); line-height: 1; }
+.about-stat__label { font-size: var(--font-label); font-weight: var(--fw-medium); color: var(--color-text-faint); letter-spacing: 3px; text-transform: uppercase; }
+.about-stat__line { width: 40px; height: 2px; background: var(--color-blue); margin-top: 4px; }
+
+.about-quote {
+  background: rgba(30,127,216,0.1); border: 0.5px solid rgba(30,127,216,0.3);
+  border-radius: var(--radius-md); padding: 20px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.about-quote__text { font-size: var(--font-body); color: rgba(255,255,255,0.8); line-height: 22px; }
+.about-quote__cite { font-size: 10px; font-weight: var(--fw-medium); color: var(--color-blue-light); font-style: normal; }
+
+/* ── Mission & Values ───────────────────────────── */
+.about-mission { background: var(--color-surface); width: 100%; }
+.about-mission__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 64px var(--pad-x);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+}
+.about-mission__col { display: flex; flex-direction: column; gap: 20px; }
+.about-mission__title {
+  font-size: var(--font-h1); font-weight: var(--fw-bold);
+  color: var(--color-text-dark); line-height: 1.2;
+}
+.about-mission__desc { font-size: var(--font-body); color: var(--color-text-mid); line-height: 20px; }
+
+.about-values { display: flex; flex-direction: column; gap: 12px; }
+.about-value {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  background: var(--color-white); border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  opacity: 0; transform: translateX(-12px);
+  transition: opacity 0.45s ease var(--delay, 0ms), transform 0.45s ease var(--delay, 0ms);
+}
+.about-value.is-visible { opacity: 1; transform: translateX(0); }
+.about-value__dot {
+  width: 6px; height: 6px; border-radius: 1px;
+  background: var(--color-blue); flex-shrink: 0;
+}
+.about-value__text { font-size: var(--font-body); font-weight: var(--fw-medium); color: var(--color-text-dark); }
+
+/* ── Team ───────────────────────────────────────── */
+.team { background: var(--color-navy); width: 100%; }
+.team__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 64px var(--pad-x);
+  display: flex; flex-direction: column; gap: 24px;
+}
+.team__header { display: flex; flex-direction: column; gap: 8px; }
+.team__title { font-size: 32px; font-weight: var(--fw-bold); color: var(--color-white); line-height: 1; }
+.team__title--blue { color: var(--color-blue-light); }
+.team__desc { font-size: var(--font-body-lg); color: var(--color-text-faint); line-height: 24px; max-width: 700px; }
+
+.team__cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+.team-card {
+  background: var(--color-white);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  width: 100%; display: flex; flex-direction: column; overflow: hidden;
+  opacity: 0; transform: translateY(20px);
+  transition:
+    opacity 0.55s ease var(--delay, 0ms),
+    transform 0.55s ease var(--delay, 0ms),
+    box-shadow 0.3s ease,
+    scale 0.3s ease;
+}
+.team-card.is-visible { opacity: 1; transform: translateY(0); }
+.team-card.is-visible:hover {
+  scale: 1.04;
+  box-shadow: 0 12px 40px rgba(30,127,216,0.18);
+  z-index: 1;
+}
+
+.team-card__img-wrap { position: relative; height: 280px; flex-shrink: 0; overflow: hidden; }
+.team-card__img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1); }
+.team-card__img-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 41px; background: rgba(13,27,46,0.2);
+}
+
+.team-card__body {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: space-between; padding: 16px; gap: 10px;
+}
+.team-card__info { display: flex; flex-direction: column; gap: 10px; }
+.team-card__chip {
+  display: inline-flex; align-items: center;
+  background: rgba(30,127,216,0.1); color: var(--color-blue);
+  font-size: 8px; font-weight: var(--fw-medium); letter-spacing: 1px; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 11px; align-self: flex-start;
+}
+.team-card__name { font-size: var(--font-body-lg); font-weight: var(--fw-bold); color: var(--color-text-dark); line-height: 20px; }
+.team-card__accent { width: 32px; height: 2px; background: var(--color-blue); }
+.team-card__bio { font-size: var(--font-body-sm); color: var(--color-text-mid); line-height: 16px; width: 100%; }
+.team-card__email { font-size: var(--font-body-sm); color: var(--color-blue); line-height: 16px; word-break: break-all; }
+.team-card__email:hover { text-decoration: underline; }
+
+/* ── Recruitment ────────────────────────────────── */
+.recruitment { background: var(--color-surface); width: 100%; border-top: 0.5px solid var(--color-border); }
+.recruitment__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 64px var(--pad-x);
+  display: flex; flex-direction: column; gap: 48px;
+}
+
+.recruitment__header { display: flex; flex-direction: column; gap: 12px; max-width: 640px; }
+.recruitment__title { font-size: var(--font-h1); font-weight: var(--fw-bold); color: var(--color-text-dark); line-height: 1.2; }
+.recruitment__title--blue { color: var(--color-blue); }
+.recruitment__desc { font-size: var(--font-body-lg); color: var(--color-text-mid); line-height: 24px; }
+
+/* Categories */
+.recruitment__categories { display: flex; flex-direction: column; gap: 32px; }
+.job-category { display: flex; flex-direction: column; gap: 16px; }
+.job-category__title {
+  font-size: var(--font-body); font-weight: var(--fw-bold);
+  color: var(--color-text-faint); letter-spacing: 2px; text-transform: uppercase;
+  padding-bottom: 12px; border-bottom: 0.5px solid var(--color-border);
+}
+.job-category__list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+
+.job-card {
+  background: var(--color-white); border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-lg); padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.job-card:hover { box-shadow: 0 4px 20px rgba(30,127,216,0.1); transform: translateY(-2px); }
+.job-card__top { display: flex; flex-direction: column; gap: 8px; }
+.job-card__meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.job-card__chip {
+  display: inline-flex; align-items: center;
+  background: rgba(30,127,216,0.1); color: var(--color-blue);
+  font-size: 9px; font-weight: var(--fw-medium); letter-spacing: 1px;
+  padding: 3px 10px; border-radius: 9px;
+}
+.job-card__location { font-size: 10px; color: var(--color-text-faint); }
+.job-card__title { font-size: var(--font-body-lg); font-weight: var(--fw-bold); color: var(--color-navy); line-height: 1.3; }
+.job-card__apply {
+  font-size: 10px; font-weight: var(--fw-bold); color: var(--color-blue);
+  letter-spacing: 0.5px; align-self: flex-start;
+  transition: opacity 0.15s;
+}
+.job-card__apply:hover { opacity: 0.7; }
+
+/* Contact form */
+.recruitment__contact {
+  background: var(--color-navy); border-radius: var(--radius-lg); padding: 32px;
+  display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; align-items: start;
+}
+.recruitment__contact-info { display: flex; flex-direction: column; gap: 16px; }
+.recruitment__contact-title { font-size: var(--font-h2); font-weight: var(--fw-bold); color: var(--color-white); line-height: 1.2; }
+.recruitment__contact-desc { font-size: var(--font-body); color: var(--color-text-faint); line-height: 20px; }
+.recruitment__contact-details { display: flex; flex-direction: column; gap: 8px; }
+.recruitment__contact-link { font-size: var(--font-body-lg); color: var(--color-blue-light); font-weight: var(--fw-medium); transition: opacity 0.15s; }
+.recruitment__contact-link:hover { opacity: 0.75; }
+
+.recruitment__form { display: flex; flex-direction: column; gap: 12px; }
+.recruitment__form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.recruitment__input {
+  background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-md); padding: 0 14px; height: 44px;
+  font-size: var(--font-body-sm); font-family: var(--font-family);
+  color: var(--color-white); width: 100%;
+  transition: border-color 0.15s;
+}
+.recruitment__input::placeholder { color: rgba(255,255,255,0.3); }
+.recruitment__input:focus { outline: none; border-color: var(--color-blue); }
+.recruitment__submit {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--color-blue); color: var(--color-white);
+  font-size: 10px; font-weight: var(--fw-bold); letter-spacing: 1.2px; text-transform: uppercase;
+  height: 44px; padding: 0 24px; border: none; border-radius: var(--radius-sm);
+  cursor: pointer; align-self: flex-start;
+  transition: background 0.15s;
+}
+.recruitment__submit:hover { background: #1a6fc0; }
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 1100px) {
+  .about-hero__inner    { flex-direction: column; gap: 48px; }
+  .about-hero__left     { max-width: 100%; }
+  .about-stats          { gap: 32px 60px; }
+  .about-mission__inner { grid-template-columns: 1fr; gap: 40px; }
+  .team__cards          { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .about-hero__inner    { padding: 40px 24px; }
+  .about-hero__h1       { font-size: clamp(28px, 7vw, var(--font-display)); }
+  .about-stats          { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .about-stat__value    { font-size: 32px; }
+  .about-mission__inner { padding: 48px 24px; }
+  .team__inner          { padding: 48px 24px; }
+  .team__cards          { grid-template-columns: 1fr; }
+  .team-card__bio       { width: 100%; }
+  .recruitment__inner   { padding: 48px 24px; }
+  .recruitment__contact { grid-template-columns: 1fr; gap: 32px; }
+  .recruitment__form-row { grid-template-columns: 1fr; }
+  .recruitment__submit  { width: 100%; }
+}
+</style>
+
+<script>
+  function animateCount(el: HTMLElement, duration = 1800) {
+    const raw    = el.dataset.val    ?? '0';
+    const suffix = el.dataset.suffix ?? '';
+    const prefix = el.dataset.prefix ?? '';
+    const end    = parseInt(raw.replace(/\D/g, ''));
+    const valueEl = el.querySelector('.about-stat__value') as HTMLElement;
+    if (!valueEl || isNaN(end)) return;
+    const start = performance.now();
+    function step(now: number) {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      valueEl.textContent = prefix + Math.round(ease * end) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target as HTMLElement;
+      el.classList.add('is-visible');
+      if (el.classList.contains('about-stat')) animateCount(el);
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll<HTMLElement>('.about-stat, .team-card, .about-value, .slide-up, .slide-left, .slide-right').forEach(el => observer.observe(el));
+</script>

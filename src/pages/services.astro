@@ -1,0 +1,674 @@
+---
+// src/pages/services.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
+
+const steps = [
+  {
+    num: '01',
+    title: 'Platform Feasibility & Production Definition',
+    desc: 'We evaluate product strategy, production system requirements, and operational viability.',
+  },
+  {
+    num: '02',
+    title: 'Factory & Production System Engineering',
+    desc: 'Layout, flow, labor modeling, equipment planning, and DFMA alignment.',
+  },
+  {
+    num: '03',
+    title: 'Equipment, Automation & Vendor Integration',
+    desc: 'Specification, RFP development, vendor coordination, and commissioning support.',
+  },
+  {
+    num: '04',
+    title: 'Launch, Ramp-Up & Stabilization',
+    desc: 'Line commissioning, workforce onboarding, throughput stabilization, and early production optimization.',
+  },
+  {
+    num: '05',
+    title: 'Scale & Platform Expansion',
+    desc: 'Performance benchmarking, system refinement, and multi-factory or product-line growth strategies.',
+  },
+];
+
+const services = [
+  {
+    num: '01',
+    tag: 'Strategy & Feasibility',
+    title: 'Strategy & Feasibility',
+    desc: 'Market and competitive analysis, factory feasibility studies, site selection & infrastructure readiness, modular business model validation, and early production system definition to ensure technical and operational viability.',
+    bullets: ['Market and competitive analysis', 'Factory feasibility studies', 'Site selection & infrastructure readiness', 'Modular business model validation', 'Early production system definition'],
+    img: 'https://images.unsplash.com/photo-1542626991-cbc4e32524cc?w=900&h=600&fit=crop&auto=format',
+    imgAlt: 'Architectural blueprints and planning documents on a table',
+    dark: true,
+  },
+  {
+    num: '02',
+    tag: 'Modular Factory Design & Production System Engineering',
+    title: 'Modular Factory Design & Production System Engineering',
+    desc: 'Factory layout and workflow engineering, production line architecture, manual and automated system design, DFMA and product industrialization, and production flow engineering to support repeatable, scalable output.',
+    bullets: ['Factory layout and workflow engineering', 'Production line architecture', 'Manual and automated system design', 'DFMA and product industrialization', 'Production flow engineering'],
+    img: 'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=900&h=600&fit=crop&auto=format',
+    imgAlt: 'Modern manufacturing production line inside a large factory',
+    dark: false,
+  },
+  {
+    num: '03',
+    tag: 'Equipment, Automation & Tooling',
+    title: 'Equipment, Automation & Tooling',
+    desc: 'Equipment specification and sourcing support, vendor coordination, automation strategy, commissioning support, RFP development and vendor evaluation. Right-sizing automation to product maturity, labor strategy, and capital stage.',
+    bullets: ['Equipment specification & sourcing support', 'Vendor coordination & commissioning support', 'Automation strategy & RFP development', 'Vendor evaluation & selection', 'Right-sizing automation to capital stage'],
+    img: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=900&h=600&fit=crop&auto=format',
+    imgAlt: 'Industrial robotic arm in an automated manufacturing facility',
+    dark: true,
+  },
+  {
+    num: '04',
+    tag: 'Factory Launch & Production Ramp-Up',
+    title: 'Factory Launch & Production Ramp-Up',
+    desc: 'Line commissioning and start-up support, operator training systems, throughput stabilization, early production troubleshooting, performance tracking and optimization. Phased ramp-up planning aligned with labor learning curves.',
+    bullets: ['Line commissioning & start-up support', 'Operator training systems', 'Throughput stabilization', 'Early production troubleshooting', 'Performance tracking and optimization'],
+    img: null,
+    imgAlt: '',
+    video: '/video/Time_lapse.mp4#t=3',
+    dark: false,
+  },
+  {
+    num: '05',
+    tag: 'Labor, SOPs & Operations',
+    title: 'Labor, SOPs & Operations',
+    desc: 'Labor modeling and staffing plans, productivity benchmarking, SOP development, quality systems and KPIs. Phased ramp-up planning aligned with labor learning curves and production system maturity.',
+    bullets: ['Labor modeling & staffing plans', 'Productivity benchmarking', 'SOP development', 'Quality systems & KPIs'],
+    img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900&h=600&fit=crop&auto=format',
+    imgAlt: 'Factory worker reviewing operations and quality control procedures',
+    dark: true,
+  },
+  {
+    num: '06',
+    tag: 'Financial & Implementation Planning',
+    title: 'Financial & Implementation Planning',
+    desc: 'CAPEX modeling, 5-year pro forma development, phased implementation roadmaps, technical validation for investors. Ramp-up planning aligned with labor learning curves and production system maturity.',
+    bullets: ['CAPEX modeling', '5-year pro forma development', 'Phased implementation roadmaps', 'Technical validation for investors'],
+    img: null,
+    imgAlt: '',
+    canvas: 'finance-canvas',
+    dark: false,
+  },
+];
+---
+
+<BaseLayout
+  title="Modular Factory Design, Production Systems & Ramp-Up Support | Our Services"
+  description="Feasibility studies, modular factory design, equipment planning, automation strategy, SOPs, labor modeling, and production ramp-up support for offsite manufacturing platforms."
+>
+  <NavBar activePage="services" />
+  <main>
+
+    <!-- 01 Hero -->
+    <section class="svc-hero">
+      <div class="svc-hero__inner">
+        <div class="svc-hero__text">
+          <div class="eyebrow">
+            <span class="eyebrow-line"></span>
+            <span class="eyebrow-text">How We Work</span>
+          </div>
+          <h1 class="svc-hero__h1">
+            From Feasibility to<br/>
+            <span class="svc-hero__h1--blue">Factory Launch.</span>
+          </h1>
+          <p class="svc-hero__desc">
+            We work with modular developers, manufacturers, and investors to design, engineer, and launch high-performance offsite construction manufacturing platforms. This page tells you how.
+          </p>
+        </div>
+        <div class="svc-hero__canvas-wrap">
+          <canvas id="cubes-canvas"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 Feasibility Banner -->
+    <section class="svc-feas">
+      <div class="svc-feas__inner">
+        <div class="feas-card slide-up">
+          <div class="feas-card__left">
+            <div class="eyebrow">
+              <span class="eyebrow-line"></span>
+              <span class="eyebrow-text">Signature Service</span>
+            </div>
+            <h2 class="feas-card__title">Strategy & Feasibility</h2>
+            <p class="feas-card__desc">
+              Market analysis, factory feasibility studies, site selection, business model validation, and early production system definition to ensure technical and operational viability.
+            </p>
+          </div>
+          <div class="feas-card__stats">
+            <div class="feas-stat">
+              <p class="feas-stat__value">22+</p>
+              <p class="feas-stat__label">Factories Launched</p>
+            </div>
+            <div class="feas-stat">
+              <p class="feas-stat__value">1.4M+</p>
+              <p class="feas-stat__label">SF Designed</p>
+            </div>
+            <div class="feas-stat">
+              <p class="feas-stat__value">9M+</p>
+              <p class="feas-stat__label">SF Capacity/yr</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 How We Work -->
+    <section class="svc-process">
+      <div class="svc-process__inner">
+        <div class="svc-process__header slide-up">
+          <div class="eyebrow">
+            <span class="eyebrow-line eyebrow-line--blue"></span>
+            <span class="eyebrow-text eyebrow-text--blue">Our Process</span>
+          </div>
+          <h2 class="svc-process__title">How a Project Comes to Life</h2>
+          <p class="svc-process__desc">
+            Every engagement follows the same proven methodology — from that first consultation to full platform launch.
+          </p>
+        </div>
+        <div class="svc-process__steps">
+          {steps.map((step, i) => (
+            <div class="process-step" style={`--delay: ${i * 100}ms`}>
+              <div class="process-step__top">
+                <p class="process-step__num">{step.num}</p>
+                {i < steps.length - 1 && <span class="process-step__arrow">→</span>}
+              </div>
+              <p class="process-step__title">{step.title}</p>
+              <p class="process-step__desc">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 04–09 Service Detail Sections -->
+    {services.map((svc, i) => (
+      <section class={`svc-detail ${svc.dark ? 'svc-detail--dark' : 'svc-detail--light'}`} id={`service-${svc.num}`}>
+        <div class={`svc-detail__inner ${svc.dark ? '' : 'svc-detail__inner--flip'}`}>
+          <div class={`svc-detail__content ${svc.dark ? 'slide-left' : 'slide-right'}`}>
+            <div class="svc-detail__meta">
+              <span class="svc-detail__num">{svc.num} /</span>
+              <span class="svc-detail__chip">{svc.tag}</span>
+            </div>
+            <h2 class="svc-detail__title">{svc.title}</h2>
+            <div class="svc-detail__divider"></div>
+            <p class="svc-detail__desc">{svc.desc}</p>
+            <ul class="svc-detail__bullets">
+              {svc.bullets.map(b => <li>{b}</li>)}
+            </ul>
+          </div>
+          <div class={`svc-detail__img-wrap ${svc.canvas ? 'svc-detail__img-wrap--canvas' : ''} ${svc.dark ? 'slide-right' : 'slide-left'}`}>
+            {svc.canvas
+              ? <canvas id={svc.canvas} class="svc-detail__canvas"></canvas>
+              : svc.video
+                ? <video src={svc.video} class="svc-detail__img svc-detail__video" autoplay muted playsinline></video>
+                : <img src={svc.img} alt={svc.imgAlt} class="svc-detail__img" loading="lazy" />
+            }
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <!-- 10 CTA -->
+    <section class="svc-cta">
+      <div class="svc-cta__inner">
+        <div class="svc-cta__text slide-left">
+          <h2 class="svc-cta__title">Ready to Build the Right Factory?</h2>
+          <p class="svc-cta__desc">Whether you're launching your first factory or scaling an existing platform, we align production design, operations, and capital strategy into one executable path.</p>
+        </div>
+        <a href="/contact" class="svc-cta__btn">Schedule a Consultation</a>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+/* ── 01 Hero ───────────────────────────────────── */
+.svc-hero { background: var(--color-navy); width: 100%; }
+.svc-hero__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 80px var(--pad-x);
+  display: flex; align-items: center; gap: 48px;
+}
+.svc-hero__text { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+.svc-hero__h1 {
+  font-size: var(--font-display); font-weight: var(--fw-bold);
+  color: var(--color-white); line-height: 1.05;
+}
+.svc-hero__h1--blue { color: var(--color-blue-light); }
+.svc-hero__desc {
+  font-size: var(--font-body-lg); color: var(--color-text-faint);
+  line-height: 24px; max-width: 520px;
+}
+.svc-hero__canvas-wrap { flex: 1; height: 420px; position: relative; }
+#cubes-canvas { width: 100%; height: 100%; display: block; }
+
+/* ── 02 Feasibility Banner ─────────────────────── */
+.svc-feas { background: var(--color-navy); width: 100%; padding: 0 0 48px; }
+.svc-feas__inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+.feas-card {
+  background: rgba(30,127,216,0.06);
+  border: 0.5px solid rgba(74,159,224,0.25);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  display: flex; align-items: center; justify-content: space-between; gap: 40px;
+}
+.feas-card__left { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+.feas-card__title {
+  font-size: var(--font-h2); font-weight: var(--fw-bold);
+  color: var(--color-white); line-height: 1;
+}
+.feas-card__desc { font-size: 12px; color: var(--color-text-faint); line-height: 18px; max-width: 680px; }
+.feas-card__stats { display: flex; gap: 48px; flex-shrink: 0; }
+.feas-stat { display: flex; flex-direction: column; gap: 4px; }
+.feas-stat__value { font-size: 24px; font-weight: var(--fw-bold); color: var(--color-blue-light); line-height: 1; }
+.feas-stat__label { font-size: 7px; font-weight: var(--fw-medium); color: var(--color-text-faint); letter-spacing: 1px; text-transform: uppercase; }
+
+/* ── 03 Process ────────────────────────────────── */
+.svc-process { background: var(--color-surface); width: 100%; }
+.svc-process__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 70px var(--pad-x);
+  display: flex; flex-direction: column; gap: 40px;
+}
+.svc-process__header { display: flex; flex-direction: column; gap: 10px; max-width: 600px; }
+.svc-process__title { font-size: var(--font-h1); font-weight: var(--fw-bold); color: var(--color-text-dark); line-height: 1; }
+.svc-process__desc { font-size: var(--font-body); color: var(--color-text-mid); line-height: 20px; }
+
+.svc-process__steps {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  border-top: 0.5px solid var(--color-border);
+}
+.process-step {
+  padding: 24px 16px;
+  border-right: 0.5px solid var(--color-border);
+  display: flex; flex-direction: column; gap: 8px;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.5s ease var(--delay, 0ms), transform 0.5s ease var(--delay, 0ms);
+}
+.process-step:last-child { border-right: none; }
+.process-step.is-visible { opacity: 1; transform: translateY(0); }
+
+.process-step__top { display: flex; align-items: center; justify-content: space-between; }
+.process-step__num { font-size: var(--font-h1); font-weight: var(--fw-bold); color: var(--color-border); line-height: 1; }
+.process-step__arrow { font-size: 11px; color: var(--color-blue); }
+.process-step__title { font-size: var(--font-body); font-weight: var(--fw-bold); color: var(--color-text-dark); line-height: 18px; }
+.process-step__desc { font-size: var(--font-body-sm); color: var(--color-text-mid); line-height: 16px; }
+
+/* ── 04–09 Service Detail Sections ─────────────── */
+.svc-detail { width: 100%; }
+.svc-detail--dark  { background: var(--color-navy); }
+.svc-detail--light { background: var(--color-surface); }
+
+.svc-detail__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 56px var(--pad-x);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+}
+/* flip: image left, content right */
+.svc-detail__inner--flip .svc-detail__content { order: 2; }
+.svc-detail__inner--flip .svc-detail__img-wrap { order: 1; }
+
+.svc-detail__meta {
+  display: flex; align-items: center; gap: 12px;
+}
+.svc-detail__num {
+  font-size: 11px; font-weight: var(--fw-regular);
+  color: var(--color-blue); letter-spacing: 1px;
+}
+.svc-detail__chip {
+  display: inline-block;
+  background: rgba(30,127,216,0.12);
+  color: var(--color-blue-light);
+  font-size: 8px; font-weight: var(--fw-medium); letter-spacing: 1.2px; text-transform: uppercase;
+  padding: 5px 10px; border-radius: 11px;
+}
+
+.svc-detail__content { display: flex; flex-direction: column; gap: 16px; }
+.svc-detail__title {
+  font-size: 18px; font-weight: var(--fw-semibold); line-height: 26px;
+}
+.svc-detail--dark  .svc-detail__title { color: var(--color-white); }
+.svc-detail--light .svc-detail__title { color: var(--color-text-dark); }
+
+.svc-detail__divider { height: 0.5px; width: 100%; }
+.svc-detail--dark  .svc-detail__divider { background: rgba(255,255,255,0.08); }
+.svc-detail--light .svc-detail__divider { background: var(--color-border); }
+
+.svc-detail__desc { font-size: var(--font-body); line-height: 22px; }
+.svc-detail--dark  .svc-detail__desc { color: var(--color-text-faint); }
+.svc-detail--light .svc-detail__desc { color: var(--color-text-mid); }
+
+.svc-detail__bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.svc-detail__bullets li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: var(--font-body-sm); line-height: 20px;
+}
+.svc-detail--dark  .svc-detail__bullets li { color: var(--color-text-faint); }
+.svc-detail--light .svc-detail__bullets li { color: var(--color-text-mid); }
+.svc-detail__bullets li::before {
+  content: ''; width: 5px; height: 5px; border-radius: 1px;
+  background: var(--color-blue); flex-shrink: 0; margin-top: 5px;
+}
+
+.svc-detail__img-wrap {
+  border-radius: var(--radius-lg); overflow: hidden;
+  height: 260px;
+}
+.svc-detail--dark  .svc-detail__img-wrap { border: 0.5px solid rgba(74,159,224,0.15); }
+.svc-detail--light .svc-detail__img-wrap { border: 0.5px solid var(--color-border); }
+.svc-detail__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.svc-detail__img-wrap--canvas {
+  background: transparent;
+  border: none !important;
+  display: flex; align-items: center; justify-content: center;
+}
+.svc-detail__canvas { width: 100%; height: 100%; display: block; }
+
+/* ── Slide animations ───────────────────────────── */
+.slide-up {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.6s ease var(--delay, 0ms), transform 0.6s ease var(--delay, 0ms);
+}
+.slide-left {
+  opacity: 0; transform: translateX(-40px);
+  transition: opacity 0.6s ease var(--delay, 0ms), transform 0.6s ease var(--delay, 0ms);
+}
+.slide-right {
+  opacity: 0; transform: translateX(40px);
+  transition: opacity 0.6s ease var(--delay, 0ms), transform 0.6s ease var(--delay, 0ms);
+}
+.slide-up.is-visible,
+.slide-left.is-visible,
+.slide-right.is-visible {
+  opacity: 1; transform: translate(0);
+}
+
+/* ── CTA ────────────────────────────────────────── */
+.svc-cta { background: var(--color-surface); border-top: 0.5px solid var(--color-border); width: 100%; }
+.svc-cta__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 44px var(--pad-x);
+  display: flex; align-items: center; justify-content: space-between; gap: 40px;
+}
+.svc-cta__text { display: flex; flex-direction: column; gap: 10px; }
+.svc-cta__title { font-size: var(--font-h1); font-weight: var(--fw-bold); color: var(--color-navy); line-height: 1; }
+.svc-cta__desc { font-size: var(--font-body-lg); color: var(--color-text-faint); line-height: 22px; max-width: 600px; }
+.svc-cta__btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--color-blue); color: var(--color-white);
+  font-size: 10px; font-weight: var(--fw-bold); letter-spacing: 1.2px; text-transform: uppercase;
+  padding: 12px 20px; border-radius: var(--radius-sm);
+  white-space: nowrap; flex-shrink: 0;
+  transition: background 0.15s;
+}
+.svc-cta__btn:hover { background: #1a6fc0; }
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 1024px) {
+  .svc-hero__inner { flex-direction: column; }
+  .svc-hero__canvas-wrap { width: 100%; height: 280px; }
+  .svc-process__steps { grid-template-columns: repeat(3, 1fr); }
+  .process-step:nth-child(3) { border-right: none; }
+  .feas-card { flex-direction: column; align-items: flex-start; }
+  .svc-detail__inner { grid-template-columns: 1fr; gap: 32px; }
+  .svc-detail__inner--flip .svc-detail__content { order: 1; }
+  .svc-detail__inner--flip .svc-detail__img-wrap { order: 2; }
+}
+@media (max-width: 768px) {
+  .svc-hero__inner { padding: 64px 24px; }
+  .svc-hero__h1 { font-size: clamp(32px, 8vw, var(--font-display)); }
+  .svc-hero__canvas-wrap { height: 220px; }
+  .svc-process__inner { padding: 48px 24px; }
+  .svc-process__steps { grid-template-columns: 1fr; }
+  .process-step { border-right: none; border-bottom: 0.5px solid var(--color-border); }
+  .svc-detail__inner { padding: 40px 24px; }
+  .svc-cta__inner { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
+  .svc-cta__btn { width: 100%; }
+}
+</style>
+
+<script>
+  // Loop timelapse video from 3s to skip opening frames
+  const tlVideo = document.querySelector<HTMLVideoElement>('.svc-detail__video');
+  if (tlVideo) {
+    tlVideo.addEventListener('ended', () => {
+      tlVideo.currentTime = 3;
+      tlVideo.play();
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        (entry.target as HTMLElement).classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.process-step, .slide-up, .slide-left, .slide-right').forEach(el => observer.observe(el));
+</script>
+
+<script is:inline type="module">
+  // ── Finance 3D Bar Chart ────────────────────────────────────
+  import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+
+  const finCanvas = document.getElementById('finance-canvas');
+  if (finCanvas) {
+    const finWrap = finCanvas.parentElement;
+
+    const finRenderer = new THREE.WebGLRenderer({ canvas: finCanvas, antialias: true, alpha: true });
+    finRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    finRenderer.setClearColor(0x000000, 0);
+
+    const finScene  = new THREE.Scene();
+    const finCamera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+    finCamera.position.set(0, 4.5, 10);
+    finCamera.lookAt(0, 1, 0);
+
+    // Lights
+    finScene.add(new THREE.AmbientLight(0x4a9fe0, 0.5));
+    const dl = new THREE.DirectionalLight(0xffffff, 1.0);
+    dl.position.set(4, 8, 6);
+    finScene.add(dl);
+    const bl = new THREE.PointLight(0x1e7fd8, 2.5, 20);
+    bl.position.set(-3, 5, 3);
+    finScene.add(bl);
+
+    // Grid floor
+    const gridHelper = new THREE.GridHelper(10, 10, 0x1e7fd8, 0xd0d8e8);
+    gridHelper.material.transparent = true;
+    gridHelper.material.opacity = 0.35;
+    gridHelper.position.y = 0;
+    finScene.add(gridHelper);
+
+    // Bar data: [x-position, height, opacity]
+    const barData = [
+      [-3.5, 1.2, 0.7],
+      [-2.5, 2.0, 0.75],
+      [-1.5, 1.6, 0.7],
+      [-0.5, 3.2, 0.9],
+      [ 0.5, 2.6, 0.85],
+      [ 1.5, 3.8, 1.0],
+      [ 2.5, 2.9, 0.85],
+      [ 3.5, 4.2, 1.0],
+    ];
+
+    const barWidth = 0.55;
+    const bars = [];
+
+    barData.forEach(([x, h, op], i) => {
+      const geo = new THREE.BoxGeometry(barWidth, h, barWidth);
+      // Shift geometry so bar grows from y=0 upward
+      geo.translate(0, h / 2, 0);
+
+      const mat = new THREE.MeshStandardMaterial({
+        color: i >= barData.length - 2 ? 0x1e7fd8 : 0x0D1B2E,
+        transparent: true,
+        opacity: op * 0.85,
+        roughness: 0.3,
+        metalness: 0.5,
+      });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.position.set(x, 0, 0);
+      finScene.add(mesh);
+
+      // Edge highlight
+      const edges = new THREE.EdgesGeometry(geo);
+      const lineMat = new THREE.LineBasicMaterial({ color: 0x4a9fe0, transparent: true, opacity: op * 0.6 });
+      const wireframe = new THREE.LineSegments(edges, lineMat);
+      wireframe.position.copy(mesh.position);
+      finScene.add(wireframe);
+
+      bars.push({ mesh, wireframe });
+    });
+
+    // Floating particles
+    const pGeo = new THREE.BufferGeometry();
+    const pCount = 40;
+    const pPos = new Float32Array(pCount * 3);
+    for (let i = 0; i < pCount; i++) {
+      pPos[i * 3]     = (Math.random() - 0.5) * 10;
+      pPos[i * 3 + 1] = Math.random() * 6;
+      pPos[i * 3 + 2] = (Math.random() - 0.5) * 6;
+    }
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+    finScene.add(new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x4a9fe0, size: 0.07, transparent: true, opacity: 0.45 })));
+
+    function finResize() {
+      const w = finWrap.clientWidth;
+      const h = finWrap.clientHeight;
+      finRenderer.setSize(w, h, false);
+      finCamera.aspect = w / h;
+      finCamera.updateProjectionMatrix();
+    }
+    finResize();
+    window.addEventListener('resize', finResize);
+
+    const finClock = new THREE.Clock();
+    function finAnimate() {
+      requestAnimationFrame(finAnimate);
+      const t = finClock.getElapsedTime();
+      finScene.rotation.y = t * 0.10;
+      finRenderer.render(finScene, finCamera);
+    }
+    finAnimate();
+  }
+</script>
+
+<script is:inline type="module">
+  import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+
+  const canvas = document.getElementById('cubes-canvas');
+  const wrap   = canvas.parentElement;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+  camera.position.set(5, 4, 9);
+  camera.lookAt(0, 0, 0);
+
+  const ambient = new THREE.AmbientLight(0x4a9fe0, 0.4);
+  scene.add(ambient);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+  dirLight.position.set(5, 10, 7);
+  scene.add(dirLight);
+  const bluePoint = new THREE.PointLight(0x1e7fd8, 2, 20);
+  bluePoint.position.set(-4, 4, 4);
+  scene.add(bluePoint);
+
+  const cubes = [];
+  const grid = [
+    [0,   0,   0,   1.0,  1.0],
+    [1.8, 0,   0,   1.0,  1.0],
+    [0,   1.8, 0,   1.0,  1.0],
+    [1.8, 1.8, 0,   1.0,  1.0],
+    [0,   0,   1.8, 1.0,  1.0],
+    [1.8, 0,   1.8, 1.0,  0.85],
+    [0,   1.8, 1.8, 1.0,  0.85],
+    [3.6, 0,   0,   0.7,  0.6],
+    [0,   3.6, 0,   0.7,  0.6],
+    [3.6, 1.8, 0,   0.7,  0.5],
+    [-1.8,0,   0,   0.7,  0.5],
+    [-1.8,1.8, 0,   0.7,  0.4],
+  ];
+
+  const geo = new THREE.BoxGeometry(1, 1, 1);
+
+  grid.forEach(([x, y, z, s, op]) => {
+    const mat = new THREE.MeshStandardMaterial({
+      color: 0x4A9FE0, transparent: true, opacity: op * 0.9,
+      roughness: 0.3, metalness: 0.6,
+    });
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.scale.setScalar(s);
+    mesh.position.set(x - 1.4, y - 0.7, z - 0.7);
+    scene.add(mesh);
+
+    const edges = new THREE.EdgesGeometry(geo);
+    const lineMat = new THREE.LineBasicMaterial({ color: 0x4a9fe0, transparent: true, opacity: op * 0.7 });
+    const wireframe = new THREE.LineSegments(edges, lineMat);
+    wireframe.scale.setScalar(s);
+    wireframe.position.copy(mesh.position);
+    scene.add(wireframe);
+
+    cubes.push({ mesh, wireframe, baseY: mesh.position.y, phase: Math.random() * Math.PI * 2 });
+  });
+
+  const partGeo = new THREE.BufferGeometry();
+  const partCount = 60;
+  const positions = new Float32Array(partCount * 3);
+  for (let i = 0; i < partCount; i++) {
+    positions[i * 3]     = (Math.random() - 0.5) * 12;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 8;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 8;
+  }
+  partGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  const partMat = new THREE.PointsMaterial({ color: 0x4a9fe0, size: 0.06, transparent: true, opacity: 0.5 });
+  scene.add(new THREE.Points(partGeo, partMat));
+
+  function resize() {
+    const w = wrap.clientWidth;
+    const h = wrap.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  let mx = 0, my = 0;
+  wrap.addEventListener('mousemove', (e) => {
+    const r = wrap.getBoundingClientRect();
+    mx = ((e.clientX - r.left) / r.width  - 0.5) * 2;
+    my = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+  });
+
+  const clock = new THREE.Clock();
+  function animate() {
+    requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+    scene.rotation.y = t * 0.12 + mx * 0.15;
+    scene.rotation.x = Math.sin(t * 0.08) * 0.1 - my * 0.08;
+    cubes.forEach(({ mesh, wireframe, baseY, phase }) => {
+      const bob = Math.sin(t * 0.6 + phase) * 0.06;
+      mesh.position.y      = baseY + bob;
+      wireframe.position.y = baseY + bob;
+    });
+    renderer.render(scene, camera);
+  }
+  animate();
+</script>

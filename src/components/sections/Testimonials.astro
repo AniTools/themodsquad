@@ -1,0 +1,99 @@
+---
+// src/components/sections/Testimonials.astro
+// Source: Figma node 99:226 — Testimonio Card
+// Fix: role text = 13px Body/Default line-height 20px (not 10px)
+
+const testimonials = [
+  { quote: 'The Mod Squad Team cut our construction timeline by 40%. Their factory design expertise is unmatched in the industry.', name: 'David L.',    role: 'CEO, Pacific Housing Group'     },
+  { quote: 'Working with their consulting team saved us over $800K on our last project. They know every inch of the modular process.',   name: 'Jennifer W.', role: 'VP Operations, NorthBuild Inc.'  },
+  { quote: 'Their recruitment team found us 3 senior engineers in under 2 weeks. Incredible network and deep industry knowledge.',        name: 'Robert M.',   role: 'Director, ModConstruct LLC'     },
+];
+---
+
+<section class="testimonials">
+  <div class="testimonials__inner">
+    <div class="testimonials__header">
+      <div class="eyebrow">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">Client Testimonials</span>
+      </div>
+      <h2 class="testimonials__title">What Our Clients Say</h2>
+      <p class="testimonials__desc">Real results from real projects.</p>
+    </div>
+
+    <div class="testimonials__cards">
+      {testimonials.map((t, i) => (
+        <div class="testimonial-card" style={`--delay: ${i * 130}ms`}>
+          <div class="testimonial-card__top">
+            <span class="testimonial-card__quote-mark" aria-hidden="true">"</span>
+            <p class="testimonial-card__text">"{t.quote}"</p>
+          </div>
+          <div class="testimonial-card__bottom">
+            <div class="testimonial-card__divider"></div>
+            <p class="testimonial-card__name">{t.name}</p>
+            <p class="testimonial-card__role">{t.role}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials { background: var(--color-navy); width: 100%; }
+  .testimonials__inner {
+    max-width: var(--max-w); margin: 0 auto;
+    padding: 70px var(--pad-x);
+    display: flex; flex-direction: column; gap: 40px;
+  }
+  .testimonials__header { display: flex; flex-direction: column; gap: 12px; max-width: 500px; }
+  .testimonials__title  { font-size: var(--font-h1); font-weight: var(--fw-bold); color: var(--color-white); }
+  .testimonials__desc { font-size: var(--font-body-lg); color: var(--color-text-faint); }
+
+  .testimonials__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+  .testimonial-card {
+    background: rgba(74,159,224,0.2);
+    border: 0.5px solid var(--color-blue-light);
+    border-radius: var(--radius-lg);
+    padding: 10px 14px 20px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 224px;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.55s ease var(--delay, 0ms), transform 0.55s ease var(--delay, 0ms);
+  }
+  .testimonial-card.is-visible { opacity: 1; transform: translateY(0); }
+  .testimonial-card__top    { display: flex; flex-direction: column; gap: var(--spacing-xs); }
+  .testimonial-card__quote-mark {
+    font-size: 48px; font-weight: var(--fw-bold); color: var(--color-blue-light);
+    line-height: 0.8; display: block; height: 32px; padding: 10px;
+  }
+  .testimonial-card__text {
+    font-size: var(--font-body-lg); /* 14px Body/Large */
+    color: rgba(255,255,255,0.75); line-height: 24px;
+    padding: 0 10px 10px;
+  }
+  .testimonial-card__bottom { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+  .testimonial-card__divider { width: 40px; height: 1px; background: var(--color-blue-light); margin-bottom: 2px; }
+  .testimonial-card__name   { font-size: 12px; font-weight: var(--fw-bold); color: rgba(255,255,255,0.9); }
+  .testimonial-card__role   {
+    font-size: var(--font-body); /* Body/Default — Figma node 99:224 */
+    color: var(--color-blue-light); line-height: 20px;
+  }
+
+  @media (max-width: 1024px) { .testimonials__cards { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 768px)  { .testimonials__inner { padding: 48px 24px; } .testimonials__cards { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        (entry.target as HTMLElement).classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.testimonial-card').forEach(c => observer.observe(c));
+</script>

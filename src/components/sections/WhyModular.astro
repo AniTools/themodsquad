@@ -1,0 +1,209 @@
+---
+// src/components/sections/WhyModular.astro
+// Source: Figma node 36:787 — 5. Why Modular
+
+const bullets = [
+  'Up to 50% faster delivery vs. traditional stick-built timelines.',
+  '30% average cost reduction through factory efficiency and site labor savings.',
+  'Controlled quality — every module built in a weatherproof facility under strict QA.',
+  'Scalable and sustainable — less waste, less disruption, more flexibility.',
+];
+
+const stats = [
+  { value: '50',  suffix: '%', label: 'Faster Build'            },
+  { value: '30',  suffix: '%', label: 'Cost Savings'            },
+  { value: '100', suffix: '%', label: 'Factory Quality Control', wide: true },
+];
+---
+
+<section class="why-modular">
+  <div class="why-modular__inner">
+
+    <!-- Left: text -->
+    <div class="why-modular__text wm-animate">
+      <div class="eyebrow">
+        <span class="eyebrow-line eyebrow-line--blue"></span>
+        <span class="eyebrow-text eyebrow-text--blue">Why Modular</span>
+      </div>
+      <h2 class="why-modular__title">
+        Built Differently.<br/>
+        <span class="why-modular__title--blue">By Design.</span>
+      </h2>
+      <p class="why-modular__body">
+        Modular construction isn't a shortcut, it's a smarter system.
+        Like assembling a precision machine instead of building from scratch on-site.
+      </p>
+      <ul class="why-modular__bullets">
+        {bullets.map(b => (
+          <li class="why-modular__bullet">
+            <span class="why-modular__dot" aria-hidden="true"></span>
+            {b}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Right: stat cards -->
+    <div class="why-modular__stats">
+      {stats.map((stat, i) => (
+        <div
+          class:list={['stat-card wm-animate', { 'stat-card--wide': stat.wide }]}
+          style={`--delay: ${(i + 1) * 100}ms`}
+          data-stat={stat.value}
+          data-suffix={stat.suffix}
+        >
+          <span class="stat-card__value">{stat.value}{stat.suffix}</span>
+          <span class="stat-card__label">{stat.label}</span>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .why-modular {
+    background: var(--color-surface);
+    width: 100%;
+  }
+
+  .why-modular__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 70px var(--pad-x);
+    display: flex;
+    gap: 64px;
+    align-items: center;
+  }
+
+  /* Left */
+  .why-modular__text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .why-modular__title {
+    font-size: var(--font-h1);
+    font-weight: var(--fw-bold);
+    color: var(--color-text-dark);
+    line-height: 1.2;
+  }
+  .why-modular__title--blue { color: var(--color-blue); }
+
+  .why-modular__body {
+    font-size: var(--font-body-lg);
+    color: var(--color-text-mid);
+    line-height: 24px;
+    max-width: 497px;
+  }
+
+  .why-modular__bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 448px;
+  }
+  .why-modular__bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--color-text-mid);
+    line-height: 20px;
+  }
+  .why-modular__dot {
+    width: 6px; height: 6px;
+    border-radius: 3px;
+    background: var(--color-blue);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* Right: stat cards */
+  .why-modular__stats {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-self: center;
+  }
+
+  .stat-card {
+    background: var(--color-white);
+    border: 0.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    display: flex; flex-direction: column; gap: 6px;
+    min-height: 110px;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.5s ease var(--delay, 0ms), transform 0.5s ease var(--delay, 0ms);
+  }
+  .stat-card--wide { grid-column: span 2; }
+  .stat-card.is-visible { opacity: 1; transform: translateY(0); }
+
+  .stat-card__value {
+    font-size: var(--font-h1);
+    font-weight: var(--fw-bold);
+    color: var(--color-blue);
+    line-height: 1;
+  }
+  .stat-card__label {
+    font-size: 10px;
+    font-weight: var(--fw-medium);
+    color: var(--color-text-faint);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  /* Text column fade-in */
+  .why-modular__text {
+    opacity: 0; transform: translateX(-16px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .why-modular__text.is-visible { opacity: 1; transform: translateX(0); }
+
+  @media (max-width: 1024px) {
+    .why-modular__inner { flex-direction: column; gap: 40px; }
+    .why-modular__text { transform: translateY(16px); }
+    .why-modular__text.is-visible { transform: translateY(0); }
+    .why-modular__stats { width: 100%; }
+  }
+  @media (max-width: 768px) {
+    .why-modular__inner { padding: 48px 24px; }
+    .why-modular__stats { grid-template-columns: 1fr; }
+    .stat-card--wide { grid-column: span 1; }
+  }
+</style>
+
+<script>
+  function animateCount(el: HTMLElement, target: number, suffix: string, duration = 2200) {
+    const valueEl = el.querySelector('.stat-card__value') as HTMLElement;
+    if (!valueEl) return;
+    const start = performance.now();
+    function step(now: number) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      valueEl.textContent = Math.round(ease * target) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target as HTMLElement;
+      el.classList.add('is-visible');
+      const val = el.dataset.stat;
+      const suffix = el.dataset.suffix ?? '';
+      if (val) animateCount(el, parseInt(val), suffix);
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll<HTMLElement>('.stat-card, .why-modular__text').forEach(el => {
+    observer.observe(el);
+  });
+</script>

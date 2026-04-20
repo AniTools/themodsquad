@@ -1,0 +1,47 @@
+---
+// src/components/ui/FormTextarea.astro
+// Source: Figma node 10:47 — Form/Textarea
+export interface Props {
+  name: string;
+  label: string;
+  placeholder?: string;
+  required?: boolean;
+  rows?: number;
+}
+const { name, label, placeholder = 'Tell us about your project...', required = false, rows = 4 } = Astro.props;
+---
+
+<div class="form-field">
+  <label class="form-field__label" for={name}>{label}</label>
+  <textarea
+    class="form-textarea"
+    id={name}
+    name={name}
+    placeholder={placeholder}
+    required={required}
+    rows={rows}
+    aria-label={label}
+  ></textarea>
+</div>
+
+<style>
+  .form-field { display: flex; flex-direction: column; gap: 6px; }
+  .form-field__label {
+    font-size: var(--font-label); font-weight: var(--fw-medium);
+    color: var(--color-text-mid); letter-spacing: 1px; text-transform: uppercase;
+  }
+  .form-textarea {
+    width: 100%; min-height: 96px; /* Figma node 10:47 */
+    background: var(--color-white);
+    border: 0.5px solid var(--color-border);
+    border-radius: var(--radius-md); /* 4px */
+    padding: 12px;
+    font-family: var(--font-family);
+    font-size: 12px; color: var(--color-text-dark);
+    resize: vertical; outline: none;
+    transition: border-color 0.15s;
+    line-height: 1.5;
+  }
+  .form-textarea::placeholder { color: var(--color-text-faint); }
+  .form-textarea:focus { border-color: var(--color-blue); }
+</style>

@@ -1,0 +1,137 @@
+---
+// src/components/sections/ServicesPreview.astro
+// Source: Figma node 10:19 — Card/Service
+// Fix: body text is 14px Body/Large (not 11px)
+
+const services = [
+  {
+    title: 'Factory Design & Production Systems',
+    desc: 'Factory layout and workflow engineering, production line architecture, DFMA, and material strategy aligned for repeatable, scalable output.',
+    href: '/services#factory-design',
+  },
+  {
+    title: 'Strategy & Feasibility',
+    desc: 'Market analysis, factory feasibility studies, site selection, and early production system definition to validate technical and operational viability.',
+    href: '/services#consulting',
+  },
+  {
+    title: 'Launch, Ramp-Up & Operations',
+    desc: 'Line commissioning, operator training, throughput stabilization, labor modeling, SOPs, and performance tracking from day one.',
+    href: '/services#recruitment',
+  },
+];
+---
+
+<section class="services-preview">
+  <div class="services-preview__inner">
+    <div class="services-preview__header">
+      <div class="eyebrow">
+        <span class="eyebrow-line eyebrow-line--blue"></span>
+        <span class="eyebrow-text eyebrow-text--blue">What We Do</span>
+      </div>
+      <h2 class="services-preview__title">From Feasibility to Full Production</h2>
+      <p class="services-preview__desc">
+        We integrate factory design, production engineering, and capital strategy into one executable path — built for modular manufacturers that need to perform.
+      </p>
+    </div>
+
+    <div class="services-preview__cards">
+
+      <!-- Factory Design -->
+      <a href={services[0].href} class="service-card" style="--delay: 0ms">
+        <div class="service-card__icon" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M31.2581 11.1019C31.8431 10.5169 31.8431 9.57188 31.2581 8.98688L27.0131 4.74188C26.4281 4.15688 25.4831 4.15688 24.8981 4.74188L18.1631 11.4769L12.3281 5.64188C11.1581 4.47188 9.25313 4.47188 8.08313 5.64188L5.23313 8.49188C4.06313 9.66188 4.06313 11.5669 5.23313 12.7369L11.0681 18.5719L4.30313 25.3369V31.6969H10.6631L17.4431 24.9169L23.2781 30.7519C24.7031 32.1769 26.6231 31.6519 27.5231 30.7519L30.3731 27.9019C31.5431 26.7319 31.5431 24.8269 30.3731 23.6569L24.5381 17.8219L31.2581 11.1019ZM7.36313 10.6069L10.1981 7.75688L12.1031 9.66188L10.3331 11.4469L12.4481 13.5619L14.2331 11.7769L16.0331 13.5769L13.1831 16.4269L7.36313 10.6069ZM24.2081 21.7669L22.4231 23.5519L24.5381 25.6669L26.3231 23.8819L28.2281 25.7869L25.3781 28.6369L19.5431 22.8019L22.3931 19.9519L24.2081 21.7669ZM9.41813 28.6969H7.30313V26.5819L21.7181 12.1669L23.8331 14.2819L9.41813 28.6969ZM23.8331 10.0369L25.9481 7.92188L28.0631 10.0369L25.9481 12.1519L23.8331 10.0369Z" fill="#1E7FD8"/>
+          </svg>
+        </div>
+        <h3 class="service-card__title">{services[0].title}</h3>
+        <p class="service-card__desc">{services[0].desc}</p>
+        <span class="service-card__arrow">→</span>
+      </a>
+
+      <!-- Project Consulting -->
+      <a href={services[1].href} class="service-card" style="--delay: 120ms">
+        <div class="service-card__icon" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.755 6L27 13.245V30H9V6H19.755ZM21 3H9C7.35 3 6 4.35 6 6V30C6 31.65 7.35 33 9 33H27C28.65 33 30 31.65 30 30V12L21 3ZM22.5 16.5H16.5V18H21C21.825 18 22.5 18.675 22.5 19.5V24C22.5 24.825 21.825 25.5 21 25.5H19.5V27H16.5V25.5H13.5V22.5H19.5V21H15C14.175 21 13.5 20.325 13.5 19.5V15C13.5 14.175 14.175 13.5 15 13.5H16.5V12H19.5V13.5H22.5V16.5Z" fill="#1E7FD8"/>
+          </svg>
+        </div>
+        <h3 class="service-card__title">{services[1].title}</h3>
+        <p class="service-card__desc">{services[1].desc}</p>
+        <span class="service-card__arrow">→</span>
+      </a>
+
+      <!-- Workforce Recruitment -->
+      <a href={services[2].href} class="service-card" style="--delay: 240ms">
+        <div class="service-card__icon" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 16.5C18.315 16.5 21 13.815 21 10.5C21 7.185 18.315 4.5 15 4.5C11.685 4.5 9 7.185 9 10.5C9 13.815 11.685 16.5 15 16.5ZM15 7.5C16.65 7.5 18 8.85 18 10.5C18 12.15 16.65 13.5 15 13.5C13.35 13.5 12 12.15 12 10.5C12 8.85 13.35 7.5 15 7.5Z" fill="#1E7FD8"/>
+            <path d="M6 25.5C6.33 24.42 10.965 22.5 15 22.5C15 21.45 15.195 20.445 15.525 19.515C11.43 19.365 3 21.405 3 25.5V28.5H17.31C16.53 27.63 15.915 26.625 15.525 25.5H6Z" fill="#1E7FD8"/>
+            <path d="M29.145 25.53C29.685 24.645 30 23.61 30 22.5C30 19.185 27.315 16.5 24 16.5C20.685 16.5 18 19.185 18 22.5C18 25.815 20.685 28.5 24 28.5C25.11 28.5 26.145 28.17 27.03 27.645C28.425 29.04 29.46 30.075 30.885 31.5L33 29.385C30.75 27.135 31.815 28.185 29.145 25.53ZM24 25.5C22.35 25.5 21 24.15 21 22.5C21 20.85 22.35 19.5 24 19.5C25.65 19.5 27 20.85 27 22.5C27 24.15 25.65 25.5 24 25.5Z" fill="#1E7FD8"/>
+          </svg>
+        </div>
+        <h3 class="service-card__title">{services[2].title}</h3>
+        <p class="service-card__desc">{services[2].desc}</p>
+        <span class="service-card__arrow">→</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-preview { background: var(--color-surface); width: 100%; }
+  .services-preview__inner {
+    max-width: var(--max-w); margin: 0 auto;
+    padding: 70px var(--pad-x);
+    display: flex; flex-direction: column; gap: 40px;
+  }
+  .services-preview__header { display: flex; flex-direction: column; gap: 12px; max-width: 500px; }
+  .services-preview__title { font-size: var(--font-h1); font-weight: var(--fw-bold); color: var(--color-text-dark); line-height: 1; }
+  .services-preview__desc  { font-size: var(--font-body-lg); color: var(--color-text-mid); line-height: 24px; }
+
+  .services-preview__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); }
+
+  .service-card {
+    background: var(--color-white);
+    border: 0.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 28px 22px;
+    display: flex; flex-direction: column; gap: 10px;
+    min-height: 201px;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.5s ease var(--delay, 0ms), transform 0.5s ease var(--delay, 0ms),
+                box-shadow 0.2s, filter 0.2s;
+  }
+  .service-card.is-visible { opacity: 1; transform: translateY(0); }
+  .service-card.is-visible:hover { box-shadow: 0 4px 24px rgba(30,127,216,0.10); transform: translateY(-2px); }
+
+  .service-card__icon { width: 36px; height: 36px; display: flex; align-items: center; }
+
+  .service-card__title {
+    font-size: var(--font-body-lg); /* 14px Body/Large — Figma node 10:21 */
+    font-weight: var(--fw-bold); color: var(--color-text-dark); line-height: 1.2;
+  }
+  .service-card__desc {
+    font-size: var(--font-body-lg); /* 14px Body/Large — Figma node 10:22 */
+    color: var(--color-text-light); line-height: 24px; flex: 1;
+  }
+  .service-card__arrow { font-size: 14px; color: var(--color-blue); margin-top: auto; transition: transform 0.15s; }
+  .service-card:hover .service-card__arrow { transform: translateX(4px); }
+
+  @media (max-width: 1024px) { .services-preview__cards { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 768px)  { .services-preview__inner { padding: 48px 24px; } .services-preview__cards { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+  const cards = document.querySelectorAll<HTMLElement>('.service-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        (entry.target as HTMLElement).classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  cards.forEach(c => observer.observe(c));
+</script>

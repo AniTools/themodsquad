@@ -1,0 +1,127 @@
+---
+// src/components/sections/Partners.astro
+const partners = [
+  {
+    name: "DODD Modular Limited",
+    logo: "https://www.figma.com/api/mcp/asset/715d6be4-969f-4e9a-9cf6-e1436b2a682d",
+  },
+  {
+    name: "UBC – Unique Building Concepts BIM Services",
+    logo: "https://www.figma.com/api/mcp/asset/7d21cd47-e0d6-4a2d-bce7-9eedcde9c076",
+  },
+  {
+    name: "Partner",
+    logo: "https://www.figma.com/api/mcp/asset/c3f33db7-4f30-455d-ab10-184048ee1e85",
+  },
+  {
+    name: "RAW – Robot at Work",
+    logo: "https://www.figma.com/api/mcp/asset/42c67b06-3dbb-4ccd-9900-cc39c98212d7",
+  },
+];
+---
+
+<section class="partners">
+  <div class="partners__inner">
+
+    <div class="partners__header">
+      <div class="eyebrow">
+        <span class="eyebrow-line eyebrow-line--blue"></span>
+        <span class="eyebrow-text eyebrow-text--blue">Our Partners</span>
+      </div>
+      <h2 class="partners__title">
+        We <span class="partners__title--blue">love</span> working with.
+      </h2>
+    </div>
+
+    <div class="partners__logos">
+      {partners.map((p) => (
+        <div class="partners__logo-card">
+          <img src={p.logo} alt={p.name} class="partners__logo-img" loading="lazy" />
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .partners {
+    background: var(--color-surface);
+    width: 100%;
+    border-top: 0.5px solid rgba(74,159,224,0.1);
+    padding: 80px 0px 80px 0;
+  }
+
+  .partners__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 56px var(--pad-x);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .partners__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .partners__title {
+    font-size: 32px;
+    font-weight: var(--fw-semibold);
+    color: var(--color-text-dark);
+    line-height: 1;
+  }
+  .partners__title--blue {
+    color: var(--color-blue);
+  }
+
+  .partners__logos {
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .partners__logo-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 154px;
+    height: 100px;
+    padding: 16px 20px;
+    border-radius: var(--radius-lg);
+    background: none;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .partners__logo-card:hover {
+    box-shadow: 0 4px 16px rgba(13,27,46,0.08);
+    transform: translateY(-2px);
+  }
+
+  .partners__logo-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: grayscale(1);
+    opacity: 0.7;
+    transition: filter 0.2s, opacity 0.2s;
+  }
+  .partners__logo-card:hover .partners__logo-img {
+    filter: grayscale(0);
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .partners__logos {
+      gap: 12px;
+    }
+    .partners__logo-card {
+      width: 120px;
+      height: 80px;
+      padding: 12px 16px;
+    }
+  }
+</style>

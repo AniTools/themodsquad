@@ -1,0 +1,356 @@
+---
+// src/pages/projects.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
+
+const projects = [
+  {
+    num: '01',
+    tag: 'Factory Design',
+    category: 'factory-design',
+    title: 'Florida Mega Factory',
+    meta: 'Florida, USA  ·  2023  ·  Manufacturing Plant',
+    desc: 'Full-facility modular manufacturing plant designed from the ground up for maximum throughput. Coordinated offsite fabrication with onsite foundation work, delivering a complete turnkey factory ahead of schedule.',
+    bullets: ['3D architectural renders', 'Lean factory layout', 'Site management included'],
+    img: '/img/projects/Florida Mega Factory.webp',
+    dark: true,
+  },
+  {
+    num: '02',
+    tag: 'Factory Design',
+    category: 'factory-design',
+    title: 'Factory One',
+    meta: 'Pacific Northwest, USA  ·  2022  ·  Factory Layout',
+    desc: 'Optimized plant layout engineered for lean manufacturing efficiency. Full process flow analysis, equipment placement, and automation integration — delivering consistent quality at scale.',
+    bullets: ['Process flow optimization', 'Equipment placement plan', 'Automation integration'],
+    img: '/img/projects/Factory One.webp',
+    dark: false,
+  },
+  {
+    num: '03',
+    tag: 'Factory Design · Sketch',
+    category: 'factory-design',
+    title: 'Factory Two',
+    meta: 'Southwest, USA  ·  2022  ·  Concept to Construction',
+    desc: 'From initial sketch to full construction documentation. Three-view concept design developed into complete build-ready packages, including BIM execution plans and collaboration protocols.',
+    bullets: ['3-view concept sketches', 'BIM Level 2 compliance', 'Full construction docs'],
+    img: '/img/projects/Factory Two.webp',
+    dark: true,
+  },
+  {
+    num: '04',
+    tag: 'Modular Building',
+    category: 'modular-buildings',
+    title: 'Tutemok',
+    meta: 'Arizona, USA  ·  2023  ·  Architectural Design',
+    desc: 'Modular-specific architectural design for a mixed-use development. Full BIM Level 2 Compliant Scheme delivered — concept design, document management, and protocol production.',
+    bullets: ['Mixed-use modular design', 'BIM Level 2 scheme', 'Architectural + structural'],
+    img: '/img/projects/Tutemok.webp',
+    dark: false,
+  },
+  {
+    num: '05',
+    tag: 'Site Development',
+    category: 'site-development',
+    title: 'On-site Preparation',
+    meta: 'Multiple States, USA  ·  2021–2023  ·  Site Management',
+    desc: 'Coordinated land development across multiple projects: grading, utility connections, streets, curbs, plumbing, and electrical through to final setting and stitching completion.',
+    bullets: ['Grading & utility connections', 'Setting and stitching', 'Electrical hook-up'],
+    img: '/img/projects/On-Site.webp',
+    dark: true,
+  },
+];
+
+const filters = [
+  { label: 'All Projects',      key: 'all'              },
+  { label: 'Factory Design',    key: 'factory-design'   },
+  { label: 'Modular Buildings', key: 'modular-buildings' },
+  { label: 'Site Development',  key: 'site-development'  },
+];
+---
+
+<BaseLayout
+  title="Our Projects — Modular Factory Design & Construction | The Mod Squad Team"
+  description="Projects that prove the point. Factory design, modular buildings, and site development across the US — delivered on time, on budget, and built to scale."
+>
+  <NavBar activePage="projects" />
+  <main>
+
+    <!-- 01 Header -->
+    <section class="proj-header">
+      <div class="proj-header__inner">
+        <div class="proj-header__left slide-left">
+          <div class="eyebrow">
+            <span class="eyebrow-line"></span>
+            <span class="eyebrow-text">Our Work</span>
+          </div>
+          <h1 class="proj-header__h1">Projects That<br/>Prove the Point.</h1>
+        </div>
+        <p class="proj-header__desc slide-right">
+          Five active projects across factory design, modular construction, and site development. Each one built on our core belief: precision, speed, and zero compromise on quality.
+        </p>
+      </div>
+      <div class="proj-header__divider"></div>
+    </section>
+
+    <!-- 02 Filter Bar -->
+    <section class="proj-filters">
+      <div class="proj-filters__inner">
+        <div class="proj-filters__btns" id="filter-btns">
+          {filters.map(f => (
+            <button
+              class={`filter-btn ${f.key === 'all' ? 'filter-btn--active' : ''}`}
+              data-filter={f.key}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+        <span class="proj-filters__count" id="proj-count">{projects.length} projects</span>
+      </div>
+    </section>
+
+    <!-- 03 Projects -->
+    {projects.map((proj) => (
+      <section
+        class={`proj-item ${proj.dark ? 'proj-item--dark' : 'proj-item--light'}`}
+        data-category={proj.category}
+        id={proj.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}
+      >
+        <div class={`proj-item__inner ${proj.dark ? '' : 'proj-item__inner--flip'}`}>
+          <div class="proj-item__img-wrap slide-left">
+            <img src={proj.img} alt={proj.title} class="proj-item__img" loading="lazy" />
+          </div>
+          <div class="proj-item__content slide-right">
+            <div class="proj-item__meta">
+              <span class="proj-item__num">{proj.num} /</span>
+              <span class="proj-item__chip">{proj.tag}</span>
+            </div>
+            <h2 class="proj-item__title">{proj.title}</h2>
+            <p class="proj-item__location">{proj.meta}</p>
+            <div class="proj-item__divider"></div>
+            <p class="proj-item__desc">{proj.desc}</p>
+            <ul class="proj-item__bullets">
+              {proj.bullets.map(b => <li>{b}</li>)}
+            </ul>
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <!-- 04 CTA -->
+    <section class="proj-cta">
+      <div class="proj-cta__inner">
+        <div class="proj-cta__text">
+          <h2 class="proj-cta__title">Ready to start your project?</h2>
+          <p class="proj-cta__desc">Tell us what you're building and we'll show you what modular can do.</p>
+        </div>
+        <a href="/contact" class="proj-cta__btn">Start a Conversation</a>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+/* ── Header ─────────────────────────────────────── */
+.proj-header { background: var(--color-navy); width: 100%; }
+.proj-header__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 60px var(--pad-x) 40px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end;
+}
+.proj-header__left { display: flex; flex-direction: column; gap: 16px; }
+.proj-header__h1 {
+  font-size: var(--font-h1); font-weight: var(--fw-bold);
+  color: var(--color-white); line-height: 1.25;
+}
+.proj-header__desc {
+  font-size: var(--font-body); color: var(--color-text-faint); line-height: 20px;
+}
+.proj-header__divider {
+  width: 100%; height: 0.5px;
+  background: rgba(255,255,255,0.06);
+  margin-top: 0;
+}
+
+/* ── Filter Bar ─────────────────────────────────── */
+.proj-filters { background: var(--color-navy); width: 100%; padding: 0 0 4px; }
+.proj-filters__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 16px var(--pad-x);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.proj-filters__btns { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.filter-btn {
+  font-size: 8px; font-weight: var(--fw-bold); letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 0 12px; height: 28px; border-radius: var(--radius-sm);
+  cursor: pointer; border: 0.5px solid var(--color-text-faint);
+  color: var(--color-text-faint); background: transparent;
+  font-family: var(--font-family);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.filter-btn:hover { color: var(--color-white); border-color: var(--color-white); }
+.filter-btn--active { background: var(--color-blue); color: var(--color-white); border-color: var(--color-blue); }
+
+.proj-filters__count { font-size: 11px; color: var(--color-text-faint); white-space: nowrap; }
+
+/* ── Project Items ───────────────────────────────── */
+.proj-item { width: 100%; }
+.proj-item--dark  { background: var(--color-navy); }
+.proj-item--light { background: var(--color-surface); }
+
+.proj-item__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 48px var(--pad-x);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+}
+.proj-item__inner--flip .proj-item__img-wrap { order: 2; }
+.proj-item__inner--flip .proj-item__content  { order: 1; }
+
+.proj-item__img-wrap {
+  border-radius: var(--radius-lg); overflow: hidden; height: 280px;
+}
+.proj-item--dark  .proj-item__img-wrap { border: 0.5px solid rgba(74,159,224,0.15); }
+.proj-item--light .proj-item__img-wrap { border: 0.5px solid var(--color-border); }
+.proj-item__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.proj-item__content { display: flex; flex-direction: column; gap: 14px; }
+.proj-item__meta { display: flex; align-items: center; gap: 12px; }
+.proj-item__num { font-size: 11px; color: var(--color-blue); letter-spacing: 1px; }
+.proj-item__chip {
+  display: inline-block;
+  background: rgba(30,127,216,0.15); color: var(--color-blue-light);
+  font-size: 8px; font-weight: var(--fw-medium); letter-spacing: 1.2px; text-transform: uppercase;
+  padding: 5px 10px; border-radius: 11px;
+}
+.proj-item__title {
+  font-size: 22px; font-weight: var(--fw-semibold); line-height: 1.2;
+}
+.proj-item--dark  .proj-item__title { color: var(--color-white); }
+.proj-item--light .proj-item__title { color: var(--color-text-dark); }
+
+.proj-item__location {
+  font-size: 11px; letter-spacing: 0.3px;
+}
+.proj-item--dark  .proj-item__location { color: rgba(255,255,255,0.3); }
+.proj-item--light .proj-item__location { color: var(--color-text-faint); }
+
+.proj-item__divider { height: 0.5px; }
+.proj-item--dark  .proj-item__divider { background: rgba(255,255,255,0.08); }
+.proj-item--light .proj-item__divider { background: var(--color-border); }
+
+.proj-item__desc { font-size: 13px; line-height: 20px; }
+.proj-item--dark  .proj-item__desc { color: var(--color-text-faint); }
+.proj-item--light .proj-item__desc { color: var(--color-text-mid); }
+
+.proj-item__bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.proj-item__bullets li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 11px; line-height: 16px;
+}
+.proj-item--dark  .proj-item__bullets li { color: var(--color-text-faint); }
+.proj-item--light .proj-item__bullets li { color: var(--color-text-mid); }
+.proj-item__bullets li::before {
+  content: ''; width: 5px; height: 5px; border-radius: 1px;
+  background: var(--color-blue); flex-shrink: 0; margin-top: 5px;
+}
+
+/* hidden by filter */
+.proj-item[hidden] { display: none; }
+
+/* ── Slide animations ───────────────────────────── */
+.slide-left {
+  opacity: 0; transform: translateX(-40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.slide-right {
+  opacity: 0; transform: translateX(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.slide-left.is-visible, .slide-right.is-visible {
+  opacity: 1; transform: translateX(0);
+}
+
+/* ── CTA ─────────────────────────────────────────── */
+.proj-cta { background: var(--color-blue); width: 100%; }
+.proj-cta__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 48px var(--pad-x);
+  display: flex; align-items: center; justify-content: space-between; gap: 40px;
+}
+.proj-cta__text { display: flex; flex-direction: column; gap: 10px; }
+.proj-cta__title { font-size: var(--font-h2); font-weight: var(--fw-bold); color: var(--color-white); line-height: 1; }
+.proj-cta__desc { font-size: var(--font-body-lg); color: rgba(255,255,255,0.7); line-height: 22px; max-width: 560px; }
+.proj-cta__btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent; color: var(--color-white);
+  font-size: 10px; font-weight: var(--fw-bold); letter-spacing: 1.2px; text-transform: uppercase;
+  padding: 12px 20px; border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,0.4);
+  white-space: nowrap; flex-shrink: 0;
+  transition: border-color 0.15s, background 0.15s;
+}
+.proj-cta__btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 1024px) {
+  .proj-header__inner { grid-template-columns: 1fr; gap: 24px; }
+  .proj-item__inner { grid-template-columns: 1fr; gap: 32px; }
+  .proj-item__inner--flip .proj-item__img-wrap { order: 1; }
+  .proj-item__inner--flip .proj-item__content  { order: 2; }
+}
+@media (max-width: 768px) {
+  .proj-header__inner { padding: 48px 24px 32px; }
+  .proj-filters__inner { padding: 16px 24px; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .proj-item__inner { padding: 40px 24px; }
+  .proj-cta__inner { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
+  .proj-cta__btn { width: 100%; }
+}
+</style>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        (entry.target as HTMLElement).classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.slide-left, .slide-right').forEach(el => observer.observe(el));
+
+  // Filter logic
+  const filterBtns = document.querySelectorAll<HTMLElement>('.filter-btn');
+  const projItems  = document.querySelectorAll<HTMLElement>('.proj-item');
+  const countEl    = document.getElementById('proj-count');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter ?? 'all';
+
+      // Update active button
+      filterBtns.forEach(b => b.classList.remove('filter-btn--active'));
+      btn.classList.add('filter-btn--active');
+
+      // Show/hide projects
+      let visible = 0;
+      projItems.forEach(item => {
+        const match = filter === 'all' || item.dataset.category === filter;
+        if (match) {
+          item.removeAttribute('hidden');
+          visible++;
+        } else {
+          item.setAttribute('hidden', '');
+        }
+      });
+
+      if (countEl) countEl.textContent = `${visible} project${visible !== 1 ? 's' : ''}`;
+    });
+  });
+</script>

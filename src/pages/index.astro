@@ -1,0 +1,43 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NavBar from '../components/NavBar.astro';
+import Hero from '../components/sections/Hero.astro';
+import StatsBar from '../components/sections/StatsBar.astro';
+import ServicesPreview from '../components/sections/ServicesPreview.astro';
+import ProjectsGallery from '../components/sections/ProjectsGallery.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import WhyModular from '../components/sections/WhyModular.astro';
+import CtaBand from '../components/sections/CtaBand.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Modular Factory Design & Manufacturing Consulting | The Mod Squad Team"
+  description="We design and scale modular construction factories — factory layout, DFMA, production systems, ramp-up support, and capital strategy for offsite manufacturers."
+>
+  <NavBar activePage="home" />
+  <main>
+    <!-- 01 Hero -->
+    <Hero />
+
+    <!-- 02 Stats Bar -->
+    <StatsBar />
+
+    <!-- 03 Services Preview -->
+    <ServicesPreview />
+
+    <!-- 04 Projects Gallery ← NEW -->
+    <ProjectsGallery />
+
+    <!-- 05 Why Modular -->
+    <WhyModular />
+
+    <!-- 06 Testimonials -->
+     <!-- <Testimonials /> -->
+
+    <!-- 07 CTA Band -->
+    <CtaBand />
+  </main>
+  <Footer />
+</BaseLayout>

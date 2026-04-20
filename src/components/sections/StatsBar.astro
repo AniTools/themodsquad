@@ -1,0 +1,100 @@
+---
+// src/components/sections/StatsBar.astro
+// Source: Figma node 10:35 — Stats/Item
+// Fix: label uses rgba(255,255,255,0.3) NOT --color-text-faint
+
+const stats = [
+  { value: '22+',   label: 'Factories Launched'      },
+  { value: '1550+', label: 'Manufacturing Jobs Enabled' },
+  { value: '9M+',   label: 'SF Annual Capacity'       },
+  { value: '1.5M+', label: 'SF Designed & Optimized'  },
+];
+---
+
+<section class="stats-bar">
+  <div class="stats-bar__inner">
+    {stats.map((stat, i) => (
+      <>
+        <div class="stat-box" style={`--delay: ${i * 120}ms`} data-stat-value={stat.value}>
+          <span class="stat-box__value">{stat.value}</span>
+          <span class="stat-box__label">{stat.label}</span>
+        </div>
+        {i < stats.length - 1 && <div class="stat-bar__div" aria-hidden="true"></div>}
+      </>
+    ))}
+  </div>
+</section>
+
+<style>
+  .stats-bar {
+    background: var(--color-navy);
+    border-top: 0.5px solid rgba(255,255,255,0.1);
+    width: 100%;
+  }
+  .stats-bar__inner {
+    max-width: var(--max-w); margin: 0 auto;
+    padding: 12px var(--pad-x);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .stat-box {
+    display: flex; flex-direction: column; gap: 3px; padding: var(--spacing-md) 12px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.5s ease var(--delay, 0ms), transform 0.5s ease var(--delay, 0ms);
+  }
+  .stat-box.is-visible {
+    opacity: 1; transform: translateY(0);
+  }
+  .stat-box__value {
+    font-size: var(--font-h1); /* 28px */
+    font-weight: var(--fw-bold); color: var(--color-blue-light); line-height: 1;
+  }
+  .stat-box__label {
+    font-size: var(--font-label); /* 9px */
+    font-weight: var(--fw-medium);
+    color: rgba(255,255,255,0.3); /* Figma node 10:37 — NOT --color-text-faint */
+    letter-spacing: 1.5px; text-transform: uppercase;
+  }
+  .stat-bar__div { width: 1px; height: 56px; background: rgba(255,255,255,0.07); }
+
+  @keyframes stat-count { from { opacity: 0.4; } to { opacity: 1; } }
+
+  @media (max-width: 768px) {
+    .stats-bar__inner { padding: 24px; flex-wrap: wrap; gap: 24px; justify-content: flex-start; }
+    .stat-bar__div { display: none; }
+    .stat-box { width: calc(50% - 12px); }
+  }
+</style>
+
+<script>
+  function animateCount(el: HTMLElement, target: string, duration = 900) {
+    const numMatch = target.match(/(\d+)/);
+    if (!numMatch) return;
+    const end = parseInt(numMatch[1]);
+    const suffix = target.replace(/[\d]+/, '');
+    const valueEl = el.querySelector('.stat-box__value') as HTMLElement;
+    if (!valueEl) return;
+    const start = performance.now();
+    function step(now: number) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      valueEl.textContent = Math.round(ease * end) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const boxes = document.querySelectorAll<HTMLElement>('.stat-box');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const box = entry.target as HTMLElement;
+        box.classList.add('is-visible');
+        const raw = box.dataset.statValue ?? '';
+        animateCount(box, raw);
+        observer.unobserve(box);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  boxes.forEach(b => observer.observe(b));
+</script>

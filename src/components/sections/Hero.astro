@@ -1,0 +1,128 @@
+---
+// src/components/sections/Hero.astro
+---
+
+<section class="hero">
+  <!-- Background video (YouTube) -->
+  <div class="hero__video-wrap">
+    <iframe
+      class="hero__video"
+      src="https://www.youtube.com/embed/MYetOYNktrA?autoplay=1&mute=1&loop=1&playlist=MYetOYNktrA&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      tabindex="-1"
+      aria-hidden="true"
+    ></iframe>
+  </div>
+  <div class="hero__overlay"></div>
+
+  <!-- Content -->
+  <div class="hero__inner">
+    <div class="hero__content">
+      <div class="eyebrow">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">Designing & Scaling Modular Construction Factories</span>
+      </div>
+
+      <h1 class="hero__h1">
+        <span class="hero__h1-white">Build the Right Factory. </span>
+        <span class="hero__h1-blue">From Day One.</span>
+      </h1>
+
+      <p class="hero__desc">
+       We help modular developers, manufacturers, and investors design, launch, and scale high-performance offsite construction manufacturing platforms — from feasibility and factory engineering to production ramp-up and capital strategy.
+      </p>
+
+      <div class="hero__btns">
+        <a href="/contact" class="btn-primary">Schedule a Consultation</a>
+        <a href="/services" class="btn-ghost">Our Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Video background (YouTube iframe) */
+  .hero__video-wrap {
+    position: absolute; inset: 0;
+    z-index: 0; overflow: hidden;
+    pointer-events: none;
+  }
+  .hero__video {
+    position: absolute;
+    top: 50%; left: 50%;
+    /* Scale to cover: maintain 16:9 and fill container */
+    width: 177.78vh; /* 16/9 * 100vh */
+    height: 56.25vw; /* 9/16 * 100vw */
+    min-width: 100%; min-height: 100%;
+    transform: translate(-50%, -50%);
+    border: none;
+    pointer-events: none;
+  }
+
+  /* Dark overlay so text stays readable */
+  .hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      105deg,
+      rgba(13,27,46,0.70) 0%,
+      rgba(13,27,46,0.45) 50%,
+      rgba(13,27,46,0.20) 100%
+    );
+    z-index: 1;
+  }
+
+  /* Content on top */
+  .hero__inner {
+    position: relative; z-index: 2;
+    max-width: var(--max-w); margin: 0 auto;
+    padding: 120px var(--pad-x);
+    width: 100%;
+  }
+
+  .hero__content {
+    display: flex; flex-direction: column; gap: 20px;
+    max-width: 580px;
+  }
+
+  .hero__h1 {
+    display: flex; flex-direction: column; gap: 4px;
+    font-size: var(--font-display);
+    font-weight: var(--fw-bold);
+    line-height: 1; letter-spacing: -0.5px;
+  }
+  .hero__h1-white { color: var(--color-white); }
+  .hero__h1-blue  { color: var(--color-blue-light); }
+
+  .hero__desc {
+    font-size: var(--font-body-lg);
+    font-weight: var(--fw-regular);
+    color: rgba(255,255,255,0.7);
+    line-height: 24px;
+    max-width: 440px;
+  }
+
+  .hero__btns {
+    display: flex; gap: var(--spacing-lg);
+    align-items: center; padding-top: 4px;
+  }
+
+  @media (max-width: 1024px) {
+    .hero__inner { padding: 80px 24px; }
+  }
+  @media (max-width: 768px) {
+    .hero { min-height: 520px; }
+    .hero__h1 { font-size: 32px; }
+    .hero__btns { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .hero__content { max-width: 100%; }
+  }
+</style>

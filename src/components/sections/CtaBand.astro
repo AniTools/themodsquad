@@ -1,0 +1,57 @@
+---
+// src/components/sections/CtaBand.astro
+// Source: Figma node 109:549 — 7. CTA Band
+---
+
+<section class="cta-band">
+  <div class="cta-band__inner">
+    <h2 class="cta-band__heading">
+      Ready to <span class="cta-band__heading--blue">Build</span> Smarter?
+    </h2>
+    <p class="cta-band__desc">
+      Tell us about your project. We'll show you what modular can do for your timeline and budget.
+    </p>
+    <a href="/contact" class="cta-band__btn">Start a Conversation</a>
+  </div>
+</section>
+
+<style>
+  .cta-band {
+    background: var(--color-surface);
+    width: 100%;
+    border-top: 0.5px solid var(--color-border);
+  }
+  .cta-band__inner {
+    max-width: var(--max-w); margin: 0 auto;
+    padding: 50px var(--pad-x);
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .cta-band__heading {
+    font-size: var(--font-h1); /* 28px */
+    font-weight: var(--fw-bold);
+    color: var(--color-navy);
+    line-height: 1;
+  }
+  .cta-band__heading--blue { color: var(--color-blue); }
+  .cta-band__desc {
+    font-size: var(--font-body-lg);
+    color: var(--color-text-mid);
+    line-height: 24px;
+    max-width: 635px;
+  }
+  .cta-band__btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--color-blue); color: var(--color-white);
+    font-size: 10px; font-weight: var(--fw-bold);
+    letter-spacing: 1.2px; text-transform: uppercase;
+    padding: 9px 12px; border-radius: var(--radius-sm);
+    align-self: flex-start;
+    transition: background 0.15s;
+  }
+  .cta-band__btn:hover { background: #1a6fc0; }
+
+  @media (max-width: 768px) {
+    .cta-band__inner { padding: 40px 24px; }
+    .cta-band__desc { max-width: 100%; }
+  }
+</style>

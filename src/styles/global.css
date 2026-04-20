@@ -1,0 +1,170 @@
+/* ============================================================
+   THE MOD SQUAD TEAM — Design Tokens & Global Styles
+   Sources:
+     Colors & Spacing → Figma node 20:146
+     Typography       → Figma node 20:31
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* ── COLORS (Figma node 20:146) ────────────────────────── */
+  --color-navy:       #0D1B2E;  /* nav, hero, footer, CTA band   */
+  --color-blue:       #1E7FD8;  /* buttons, links, icons, active */
+  --color-blue-light: #4A9FE0;  /* eyebrows, stat numbers        */
+  --color-surface:    #F4F6FA;  /* main page background          */
+  --color-white:      #FFFFFF;  /* cards, containers             */
+  --color-border:     #D0D8E8;  /* all strokes & dividers        */
+  --color-text-dark:  #0D1B2E;  /* headlines, bold text          */
+  --color-text-mid:   #5A6B80;  /* body copy, subheadings        */
+  --color-text-light: #6B7F96;  /* card descriptions, captions   */
+  --color-text-faint: #7A8FA6;  /* labels, metadata, hints       */
+
+  /* ── SPACING (Figma node 20:146) ───────────────────────── */
+  --spacing-xs:  4px;   /* icon inner padding         */
+  --spacing-sm:  8px;   /* tight gaps                 */
+  --spacing-md:  16px;  /* component padding          */
+  --spacing-lg:  24px;  /* grid gutter                */
+  --spacing-xl:  48px;  /* section padding / margin   */
+  --spacing-2xl: 64px;  /* section vertical rhythm    */
+
+  /* ── BORDER RADIUS (Figma node 20:146) ─────────────────── */
+  --radius-sm: 2px;  /* buttons, badges, gallery cells */
+  --radius-md: 4px;  /* input fields                   */
+  --radius-lg: 8px;  /* cards, CTA band                */
+
+  /* ── TYPOGRAPHY (Figma node 20:31) ─────────────────────── */
+  --font-family: 'Inter', sans-serif;
+
+  /* Scale */
+  --font-display:  52px;  /* Inter Semi Bold — Hero H1 only              */
+  --font-h1:       30px;  /* Inter Semi Bold — Section titles             */
+  --font-h2:       24px;  /* Inter Semi Bold — CTA, subsection titles     */
+  --font-h3:       17px;  /* Inter Semi Bold — Card titles, nav items     */
+  --font-body-lg:  15px;  /* Inter Regular   — Hero subtext, intros       */
+  --font-body:     14px;  /* Inter Regular   — Section body copy          */
+  --font-body-sm:  13px;  /* Inter Regular   — Card descriptions          */
+  --font-label:    10px;  /* Inter Medium    — Section labels, eyebrows   */
+
+  /* Weights */
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-bold:    600;
+
+  /* Line heights */
+  --lh-display: 1;
+  --lh-heading: 1;
+  --lh-body-lg: 24px;
+  --lh-body:    20px;
+  --lh-body-sm: 16px;
+  --lh-label:   1;
+
+  /* ── LAYOUT ─────────────────────────────────────────────── */
+  --max-w: 1440px;
+  --pad-x: 48px;  /* = --spacing-xl */
+}
+
+/* ── RESET ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-family);
+  background: var(--color-navy);
+  color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+}
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ── TYPOGRAPHY UTILITIES ────────────────────────────────────── */
+.text-display {
+  font-size: var(--font-display);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-display);
+}
+.text-h1 {
+  font-size: var(--font-h1);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-heading);
+}
+.text-h2 {
+  font-size: var(--font-h2);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-heading);
+}
+.text-h3 {
+  font-size: var(--font-h3);
+  font-weight: var(--fw-bold);  /* Semi Bold per Figma node 20:46 */
+  line-height: var(--lh-heading);
+}
+.text-body-lg {
+  font-size: var(--font-body-lg);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-body-lg);
+}
+.text-body {
+  font-size: var(--font-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-body);
+}
+.text-body-sm {
+  font-size: var(--font-body-sm);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-body-sm);
+}
+.text-label {
+  font-size: var(--font-label);
+  font-weight: var(--fw-medium);  /* Medium per Figma node 20:62 */
+  line-height: var(--lh-label);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ── SHARED UTILITIES ────────────────────────────────────────── */
+.eyebrow { display: flex; align-items: center; gap: 10px; }
+.eyebrow-line {
+  width: 28px; height: 1px;
+  background: var(--color-blue-light);
+  flex-shrink: 0;
+}
+.eyebrow-text {
+  font-size: var(--font-label);
+  font-weight: var(--fw-medium);
+  color: var(--color-blue-light);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+/* Blue variant (light backgrounds) */
+.eyebrow-line--blue { background: var(--color-blue); }
+.eyebrow-text--blue { color: var(--color-blue); }
+
+.section-wrap {
+  width: 100%; max-width: var(--max-w);
+  margin: 0 auto; padding: 0 var(--pad-x);
+}
+
+/* ── BUTTONS ─────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 44px; padding: 0 20px;
+  background: var(--color-blue); color: var(--color-white);
+  font-size: 10px; font-weight: var(--fw-bold);
+  letter-spacing: 1.2px; text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: #1a6fc0; }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 44px; padding: 0 18px;
+  background: transparent; color: rgba(255,255,255,0.55);
+  font-size: 10px; font-weight: var(--fw-medium);
+  letter-spacing: 1.2px; text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  border: 0.5px solid rgba(255,255,255,0.2);
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.8); }
+.btn-ghost--small { height: 28px; font-size: 8px; padding: 0 14px; }

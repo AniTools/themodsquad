@@ -1,0 +1,14 @@
+{
+  "name": "mod-squad-team",
+  "version": "0.1.0",
+  "description": "The Mod Squad Team — Homepage Redesign in Astro",
+  "type": "module",
+  "scripts": {
+    "dev":     "astro dev",
+    "build":   "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^4.x"
+  }
+}
