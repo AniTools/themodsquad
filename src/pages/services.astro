@@ -39,8 +39,7 @@ const services = [
     title: 'Strategy & Feasibility',
     desc: 'Market and competitive analysis, factory feasibility studies, site selection & infrastructure readiness, modular business model validation, and early production system definition to ensure technical and operational viability.',
     bullets: ['Market and competitive analysis', 'Factory feasibility studies', 'Site selection & infrastructure readiness', 'Modular business model validation', 'Early production system definition'],
-    img: 'https://images.unsplash.com/photo-1542626991-cbc4e32524cc?w=900&h=600&fit=crop&auto=format',
-    imgAlt: 'Architectural blueprints and planning documents on a table',
+    gallery: ['/img/services/1_strategy_feasibility.jpg', '/img/services/1_strategy_feasibility_2.jpg'],
     dark: true,
   },
   {
@@ -49,8 +48,7 @@ const services = [
     title: 'Modular Factory Design & Production System Engineering',
     desc: 'Factory layout and workflow engineering, production line architecture, manual and automated system design, DFMA and product industrialization, and production flow engineering to support repeatable, scalable output.',
     bullets: ['Factory layout and workflow engineering', 'Production line architecture', 'Manual and automated system design', 'DFMA and product industrialization', 'Production flow engineering'],
-    img: 'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=900&h=600&fit=crop&auto=format',
-    imgAlt: 'Modern manufacturing production line inside a large factory',
+    gallery: ['/img/services/2_modular_factory.JPG', '/img/services/2_modular_factory_2.JPG', '/img/services/2_modular_factory_3.JPG'],
     dark: false,
   },
   {
@@ -59,8 +57,7 @@ const services = [
     title: 'Equipment, Automation & Tooling',
     desc: 'Equipment specification and sourcing support, vendor coordination, automation strategy, commissioning support, RFP development and vendor evaluation. Right-sizing automation to product maturity, labor strategy, and capital stage.',
     bullets: ['Equipment specification & sourcing support', 'Vendor coordination & commissioning support', 'Automation strategy & RFP development', 'Vendor evaluation & selection', 'Right-sizing automation to capital stage'],
-    img: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=900&h=600&fit=crop&auto=format',
-    imgAlt: 'Industrial robotic arm in an automated manufacturing facility',
+    gallery: ['/img/services/3_factory_launch.JPG'],
     dark: true,
   },
   {
@@ -69,9 +66,7 @@ const services = [
     title: 'Factory Launch & Production Ramp-Up',
     desc: 'Line commissioning and start-up support, operator training systems, throughput stabilization, early production troubleshooting, performance tracking and optimization. Phased ramp-up planning aligned with labor learning curves.',
     bullets: ['Line commissioning & start-up support', 'Operator training systems', 'Throughput stabilization', 'Early production troubleshooting', 'Performance tracking and optimization'],
-    img: null,
-    imgAlt: '',
-    video: '/video/Time_lapse.mp4#t=3',
+    gallery: ['/img/services/4_factory_launch.JPG', '/img/services/4_factory_launch_2.JPG', '/img/services/4_factory_launch_3.JPG'],
     dark: false,
   },
   {
@@ -80,8 +75,7 @@ const services = [
     title: 'Labor, SOPs & Operations',
     desc: 'Labor modeling and staffing plans, productivity benchmarking, SOP development, quality systems and KPIs. Phased ramp-up planning aligned with labor learning curves and production system maturity.',
     bullets: ['Labor modeling & staffing plans', 'Productivity benchmarking', 'SOP development', 'Quality systems & KPIs'],
-    img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900&h=600&fit=crop&auto=format',
-    imgAlt: 'Factory worker reviewing operations and quality control procedures',
+    gallery: ['/img/services/5_labot.JPG', '/img/services/5_labot_2.JPG', '/img/services/5_labot_3.JPG'],
     dark: true,
   },
   {
@@ -90,8 +84,6 @@ const services = [
     title: 'Financial & Implementation Planning',
     desc: 'CAPEX modeling, 5-year pro forma development, phased implementation roadmaps, technical validation for investors. Ramp-up planning aligned with labor learning curves and production system maturity.',
     bullets: ['CAPEX modeling', '5-year pro forma development', 'Phased implementation roadmaps', 'Technical validation for investors'],
-    img: null,
-    imgAlt: '',
     canvas: 'finance-canvas',
     dark: false,
   },
@@ -208,7 +200,22 @@ const services = [
               ? <canvas id={svc.canvas} class="svc-detail__canvas"></canvas>
               : svc.video
                 ? <video src={svc.video} class="svc-detail__img svc-detail__video" autoplay muted playsinline></video>
-                : <img src={svc.img} alt={svc.imgAlt} class="svc-detail__img" loading="lazy" />
+                : svc.gallery && svc.gallery.length > 1
+                  ? (
+                    <div class="svc-carousel" data-carousel>
+                      {svc.gallery.map((src, i) => (
+                        <img src={src} alt={svc.title} class={`svc-carousel__img ${i === 0 ? 'svc-carousel__img--active' : ''}`} loading="lazy" />
+                      ))}
+                      <button class="svc-carousel__btn svc-carousel__btn--prev" aria-label="Previous">&#8249;</button>
+                      <button class="svc-carousel__btn svc-carousel__btn--next" aria-label="Next">&#8250;</button>
+                      <div class="svc-carousel__dots">
+                        {svc.gallery.map((_, i) => (
+                          <span class={`svc-carousel__dot ${i === 0 ? 'svc-carousel__dot--active' : ''}`}></span>
+                        ))}
+                      </div>
+                    </div>
+                  )
+                  : <img src={svc.gallery?.[0]} alt={svc.title} class="svc-detail__img" loading="lazy" />
             }
           </div>
         </div>
@@ -374,6 +381,41 @@ const services = [
 }
 .svc-detail__canvas { width: 100%; height: 100%; display: block; }
 
+/* ── Carousel ───────────────────────────────── */
+.svc-carousel {
+  position: relative; width: 100%; height: 100%;
+}
+.svc-carousel__img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  opacity: 0; transition: opacity 0.5s ease;
+}
+.svc-carousel__img--active { opacity: 1; }
+
+.svc-carousel__btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(13,27,46,0.6); color: white;
+  border: none; border-radius: 50%;
+  width: 32px; height: 32px; font-size: 20px; line-height: 1;
+  cursor: pointer; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s;
+}
+.svc-carousel__btn:hover { background: rgba(30,127,216,0.8); }
+.svc-carousel__btn--prev { left: 10px; }
+.svc-carousel__btn--next { right: 10px; }
+
+.svc-carousel__dots {
+  position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 6px; z-index: 2;
+}
+.svc-carousel__dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  transition: background 0.15s;
+}
+.svc-carousel__dot--active { background: var(--color-blue); }
+
 /* ── Slide animations ───────────────────────────── */
 .slide-up {
   opacity: 0; transform: translateY(32px);
@@ -446,6 +488,30 @@ const services = [
       tlVideo.play();
     });
   }
+
+  // Carousels
+  document.querySelectorAll<HTMLElement>('[data-carousel]').forEach(carousel => {
+    const imgs  = carousel.querySelectorAll<HTMLElement>('.svc-carousel__img');
+    const dots  = carousel.querySelectorAll<HTMLElement>('.svc-carousel__dot');
+    const prev  = carousel.querySelector<HTMLElement>('.svc-carousel__btn--prev');
+    const next  = carousel.querySelector<HTMLElement>('.svc-carousel__btn--next');
+    let current = 0;
+
+    function goTo(n: number) {
+      imgs[current].classList.remove('svc-carousel__img--active');
+      dots[current].classList.remove('svc-carousel__dot--active');
+      current = (n + imgs.length) % imgs.length;
+      imgs[current].classList.add('svc-carousel__img--active');
+      dots[current].classList.add('svc-carousel__dot--active');
+    }
+
+    prev?.addEventListener('click', () => goTo(current - 1));
+    next?.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    // Auto-advance every 4s
+    setInterval(() => goTo(current + 1), 4000);
+  });
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {

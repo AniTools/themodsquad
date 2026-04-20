@@ -1,0 +1,120 @@
+---
+// src/components/sections/ClientsCarousel.astro
+
+const clients = [
+  { name: 'S2A Modular',                  img: '/img/clients/s2a_modular_logo_nobg.png' },
+  { name: 'AVA',                          img: '/img/clients/AVA-Tesla-RED-Digital_nobg.png' },
+  { name: 'Fading West',                  img: '/img/clients/Fading_West_Navy_nobg.png' },
+  { name: 'Resia',                        img: '/img/clients/resia-manuf_logo_nobg.png' },
+  { name: 'BoulderMod',                   img: '/img/clients/boulder-mod-logo_nobg.png' },
+  { name: 'EcoMod',                       img: '/img/clients/ecomod_logo_nobg.png' },
+  { name: 'Evozome',                      img: '/img/clients/evozone_logo_nobg.png' },
+  { name: 'Rise Modular',                 img: '/img/clients/RISE_LOGO.svg' },
+  { name: 'Turafab',                      img: '/img/clients/tf_modular_logo_nobg.png' },
+  { name: 'United Tiny Homes',            img: '/img/clients/united_tiny_homes_nobg.png' },
+  { name: 'Colorado Health Foundation',   img: '/img/clients/the_colorado_health_foundation_nobg.png' },
+  { name: 'Habitat for Humanity',         img: '/img/clients/Logo_Habitat_for_Humanity_nobg.png' },
+  { name: 'Ute Mountain Tribe',           img: '/img/clients/ute-mountain-ute-tribe-official-seal-logo_nobg.png' },
+  { name: 'Hegg Modular',                 img: '/img/clients/hegg-logo_nobg.png' },
+  { name: 'Preflex',                      img: '/img/clients/preflex-plans-logo.avif' },
+  { name: 'Massdwell Solutions',          img: '/img/clients/SITELOGO-massdwell-01_nobg.png' },
+  { name: 'Tatum Tek',                    img: '/img/clients/tatumtek_logo_nobg.png' },
+  { name: 'Full Stack Modular',           img: '/img/clients/full_stack_modular_logo_nobg.png' },
+  { name: 'Hopewell 360',                 img: '/img/clients/hopewell 360_nobg.png' },
+  { name: 'Custom Touch Homes',           img: '/img/clients/costum-touch-homes_nobg.png' },
+];
+
+// Duplicate for seamless infinite loop
+const doubled = [...clients, ...clients];
+---
+
+<section class="clients">
+  <div class="clients__inner">
+    <div class="eyebrow">
+      <span class="eyebrow-line eyebrow-line--blue"></span>
+      <span class="eyebrow-text eyebrow-text--blue">Trusted By</span>
+    </div>
+    <h2 class="clients__title">Companies We've Worked With</h2>
+  </div>
+
+  <div class="clients__track-wrap">
+    <div class="clients__track">
+      {doubled.map(client => (
+        <div class="clients__logo-wrap">
+          <img
+            src={client.img}
+            alt={client.name}
+            class="clients__logo"
+            loading="lazy"
+            onerror="this.style.display='none'"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .clients {
+    background: var(--color-surface);
+    width: 100%;
+    border-top: 0.5px solid var(--color-border);
+    padding: 96px 0;
+    overflow: hidden;
+  }
+
+  .clients__inner {
+    max-width: var(--max-w); margin: 0 auto;
+    padding: 0 var(--pad-x);
+    display: flex; flex-direction: column; gap: 16px;
+    margin-bottom: 56px;
+  }
+  .clients__title {
+    font-size: var(--font-h2); font-weight: var(--fw-bold);
+    color: var(--color-text-dark); line-height: 1;
+  }
+
+  /* Scrolling track */
+  .clients__track-wrap {
+    width: 100%;
+    overflow: hidden;
+    /* Fade edges */
+    mask-image: linear-gradient(to right, transparent 0%, rgb(0, 0, 0) 70%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.412) 8%, black 92%, transparent 100%);
+  }
+
+  .clients__track {
+    display: flex;
+    gap: 40px;
+    width: max-content;
+    animation: scroll-left 40s linear infinite;
+  }
+  .clients__track:hover { animation-play-state: paused; }
+
+  @keyframes scroll-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .clients__logo-wrap {
+    display: flex; align-items: center; justify-content: center;
+    height: 56px; width: 160px; flex-shrink: 0;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+  }
+  .clients__logo-wrap:hover { opacity: 1; }
+
+  .clients__logo {
+    max-height: 60px; max-width: 160px;
+    width: auto; height: auto;
+    object-fit: contain; display: block;
+  }
+
+  @media (max-width: 768px) {
+    .clients { padding: 64px 0; }
+    .clients__inner { padding: 0 24px; }
+    .clients__track { gap: 48px; }
+    .clients__logo-wrap { width: 140px; height: 56px; padding: 0 8px; }
+    .clients__logo { max-height: 48px; max-width: 120px; }
+  }
+</style>

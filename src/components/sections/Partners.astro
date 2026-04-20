@@ -1,22 +1,12 @@
 ---
 // src/components/sections/Partners.astro
 const partners = [
-  {
-    name: "DODD Modular Limited",
-    logo: "https://www.figma.com/api/mcp/asset/715d6be4-969f-4e9a-9cf6-e1436b2a682d",
-  },
-  {
-    name: "UBC – Unique Building Concepts BIM Services",
-    logo: "https://www.figma.com/api/mcp/asset/7d21cd47-e0d6-4a2d-bce7-9eedcde9c076",
-  },
-  {
-    name: "Partner",
-    logo: "https://www.figma.com/api/mcp/asset/c3f33db7-4f30-455d-ab10-184048ee1e85",
-  },
-  {
-    name: "RAW – Robot at Work",
-    logo: "https://www.figma.com/api/mcp/asset/42c67b06-3dbb-4ccd-9900-cc39c98212d7",
-  },
+  { name: 'Offsight',           logo: '/img/partners/Offsight_Logo_nobg.png' },
+  { name: 'Building Swell',     logo: '/img/partners/buildingswell_logo_nobg.png' },
+  { name: 'Global Shop',        logo: '/img/partners/logo-global-shop-solutions.svg' },
+  { name: 'Gantio Robotics',    logo: '/img/partners/gantio_logo_black.png' },
+  { name: 'Vitrus',             logo: '/img/partners/vitrus_inc_logo_nobg.png' },
+  { name: 'NRELL',              logo: '/img/partners/Nreal_logo_nobg.png' },
 ];
 ---
 
@@ -105,12 +95,10 @@ const partners = [
     max-height: 100%;
     object-fit: contain;
     display: block;
-    filter: grayscale(1);
-    opacity: 0.7;
-    transition: filter 0.2s, opacity 0.2s;
+    opacity: 0.8;
+    transition: opacity 0.2s;
   }
   .partners__logo-card:hover .partners__logo-img {
-    filter: grayscale(0);
     opacity: 1;
   }
 
