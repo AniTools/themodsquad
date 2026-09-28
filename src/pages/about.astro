@@ -284,10 +284,7 @@ const resumeOutlook = `https://outlook.office.com/mail/deeplink/compose?to=${rec
               <a href={resumeOutlook} target="_blank" rel="noopener" class="recruitment__webmail">Outlook</a>
             </p>
             <p class="recruitment__resume-note">Or send your resume to:</p>
-            <div class="recruitment__email-row">
-              <a href={`mailto:${recruitEmail}`} class="recruitment__contact-link">{recruitEmail}</a>
-              <button type="button" class="recruitment__copy" data-copy={recruitEmail}>Copy</button>
-            </div>
+            <a href={`mailto:${recruitEmail}`} class="recruitment__contact-link">{recruitEmail}</a>
           </div>
         </div>
 
@@ -516,15 +513,6 @@ const resumeOutlook = `https://outlook.office.com/mail/deeplink/compose?to=${rec
 .recruitment__webmail { color: var(--color-blue-light); font-weight: var(--fw-medium); text-decoration: underline; text-underline-offset: 3px; }
 .recruitment__webmail:hover { opacity: 0.75; }
 .recruitment__resume-note + .recruitment__resume-note { margin-top: 0; }
-.recruitment__email-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.recruitment__copy {
-  background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.2);
-  border-radius: var(--radius-sm); padding: 6px 14px;
-  font-size: 10px; font-weight: var(--fw-bold); letter-spacing: 1.2px; text-transform: uppercase;
-  font-family: var(--font-family); color: var(--color-white);
-  cursor: pointer; transition: border-color 0.15s, background 0.15s;
-}
-.recruitment__copy:hover { border-color: var(--color-blue); background: rgba(30,127,216,0.15); }
 .recruitment__submit {
   display: inline-flex; align-items: center; justify-content: center;
   background: var(--color-blue); color: var(--color-white);
@@ -587,17 +575,4 @@ const resumeOutlook = `https://outlook.office.com/mail/deeplink/compose?to=${rec
   }, { threshold: 0.2 });
 
   document.querySelectorAll<HTMLElement>('.about-stat, .team-card, .about-value, .slide-up, .slide-left, .slide-right').forEach(el => observer.observe(el));
-
-  // Copy recruiting email to clipboard
-  document.querySelectorAll<HTMLButtonElement>('.recruitment__copy').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(btn.dataset.copy ?? '');
-        btn.textContent = 'Copied!';
-      } catch {
-        btn.textContent = 'Copy failed';
-      }
-      setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
-    });
-  });
 </script>
