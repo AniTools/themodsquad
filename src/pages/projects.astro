@@ -10,7 +10,7 @@ const projects = [
     tag: 'Factory Design',
     category: 'factory-design',
     title: 'Florida Mega Factory',
-    meta: 'Florida, USA  ·  2023  ·  Manufacturing Plant',
+    meta: 'Florida, USA  ·  2028  ·  Manufacturing Plant',
     desc: 'Full-facility modular manufacturing plant designed from the ground up for maximum throughput. Coordinated offsite fabrication with onsite foundation work, delivering a complete turnkey factory ahead of schedule.',
     bullets: ['3D architectural renders', 'Lean factory layout', 'Site management included'],
     img: '/img/projects/Florida Mega Factory.webp',
@@ -18,56 +18,58 @@ const projects = [
   },
   {
     num: '02',
-    tag: 'Factory Design',
+    tag: 'Factory Design + Workforce Development',
     category: 'factory-design',
-    title: 'Factory One',
-    meta: 'Pacific Northwest, USA  ·  2022  ·  Factory Layout',
-    desc: 'Optimized plant layout engineered for lean manufacturing efficiency. Full process flow analysis, equipment placement, and automation integration — delivering consistent quality at scale.',
-    bullets: ['Process flow optimization', 'Equipment placement plan', 'Automation integration'],
-    img: '/img/projects/Factory One.webp',
+    title: 'AVA Modular',
+    meta: 'Minnesota, USA  ·  Greenfield Modular Factory',
+    desc: 'Greenfield modular manufacturing facility developed as a fully integrated production and workforce platform. Mod Squad supported the factory from programming and production planning through equipment strategy and implementation, including an on-site training center designed to prepare and develop a workforce of approximately 150 employees.',
+    bullets: ['Greenfield factory development', 'Integrated workforce training center', 'Production + equipment planning', 'Startup + implementation support'],
+    img: '/img/projects/AVA Modular.webp',
     dark: false,
   },
   {
     num: '03',
-    tag: 'Factory Design · Sketch',
+    tag: 'Factory Design + Startup',
     category: 'factory-design',
-    title: 'Factory Two',
-    meta: 'Southwest, USA  ·  2022  ·  Concept to Construction',
-    desc: 'From initial sketch to full construction documentation. Three-view concept design developed into complete build-ready packages, including BIM execution plans and collaboration protocols.',
-    bullets: ['3-view concept sketches', 'BIM Level 2 compliance', 'Full construction docs'],
-    img: '/img/projects/Factory Two.webp',
+    title: 'Fading West',
+    meta: 'Colorado, USA  ·  2022  ·  Greenfield Modular Factory',
+    desc: 'Greenfield modular manufacturing facility developed from concept through full operation. Mod Squad supported factory layout, production sequencing, labor planning, and SOP development, continuing through commissioning, workforce onboarding, and early production runs. Today, the facility operates at scale delivering workforce and affordable housing.',
+    bullets: ['Greenfield factory development', 'Production + labor planning', 'Commissioning + workforce onboarding', 'Startup + production ramp-up'],
+    img: '/img/projects/Fading West.webp',
     dark: true,
   },
   {
     num: '04',
-    tag: 'Modular Building',
-    category: 'modular-buildings',
-    title: 'Tutemok',
-    meta: 'Arizona, USA  ·  2023  ·  Architectural Design',
-    desc: 'Modular-specific architectural design for a mixed-use development. Full BIM Level 2 Compliant Scheme delivered — concept design, document management, and protocol production.',
-    bullets: ['Mixed-use modular design', 'BIM Level 2 scheme', 'Architectural + structural'],
-    img: '/img/projects/Tutemok.webp',
+    tag: 'Factory Design + Workforce Development',
+    category: 'factory-design',
+    title: 'BoulderMOD',
+    meta: 'Boulder, Colorado  ·  2025  ·  Modular Factory + Training Facility',
+    desc: 'A first-of-its-kind modular manufacturing and workforce training facility developed with the City of Boulder, Boulder Valley School District, and Flatirons Habitat for Humanity. The factory combines affordable housing production with hands-on workforce development, giving students and community members real-world manufacturing experience and a pathway into the skilled trades.',
+    bullets: ['Integrated training facility', 'Hands-on workforce development', 'Affordable housing production'],
+    img: '/img/projects/BoulderMOD.webp',
     dark: false,
   },
   {
     num: '05',
-    tag: 'Site Development',
-    category: 'site-development',
-    title: 'On-site Preparation',
-    meta: 'Multiple States, USA  ·  2021–2023  ·  Site Management',
-    desc: 'Coordinated land development across multiple projects: grading, utility connections, streets, curbs, plumbing, and electrical through to final setting and stitching completion.',
-    bullets: ['Grading & utility connections', 'Setting and stitching', 'Electrical hook-up'],
-    img: '/img/projects/On-Site.webp',
+    tag: 'Factory Design + Production Systems',
+    category: 'factory-design',
+    title: 'Full Stack Modular West',
+    meta: 'Carson, California  ·  2025  ·  Modular Manufacturing Facility',
+    desc: 'Large-scale modular manufacturing facility developed to support high-volume housing production in California. Mod Squad helped design and implement an industrialized production system combining multiple assembly lines, offline subassembly operations, equipment integration, standardized work, and digital production management to create a scalable factory platform.',
+    bullets: ['Multi-line production system', 'Factory layout + equipment integration', 'SOP + production system development', 'Startup + production ramp-up support'],
+    img: '/img/projects/Full Stack Modular West.webp',
     dark: true,
   },
 ];
 
+// Only show filters that have at least one project
 const filters = [
   { label: 'All Projects',      key: 'all'              },
   { label: 'Factory Design',    key: 'factory-design'   },
   { label: 'Modular Buildings', key: 'modular-buildings' },
   { label: 'Site Development',  key: 'site-development'  },
-];
+].filter(f => f.key === 'all' || projects.some(p => p.category === f.key));
+const showFilters = filters.length > 2;
 ---
 
 <BaseLayout
@@ -88,7 +90,7 @@ const filters = [
           <h1 class="proj-header__h1">Projects That<br/>Prove the Point.</h1>
         </div>
         <p class="proj-header__desc slide-right">
-          Five active projects across factory design, modular construction, and site development. Each one built on our core belief: precision, speed, and zero compromise on quality.
+          Five projects across greenfield factory design, production systems, and workforce development. Each one built on our core belief: precision, speed, and zero compromise on quality.
         </p>
       </div>
       <div class="proj-header__divider"></div>
@@ -98,7 +100,7 @@ const filters = [
     <section class="proj-filters">
       <div class="proj-filters__inner">
         <div class="proj-filters__btns" id="filter-btns">
-          {filters.map(f => (
+          {showFilters && filters.map(f => (
             <button
               class={`filter-btn ${f.key === 'all' ? 'filter-btn--active' : ''}`}
               data-filter={f.key}

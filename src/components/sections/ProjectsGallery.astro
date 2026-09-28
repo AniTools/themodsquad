@@ -4,18 +4,19 @@
 // Fix: title 22px Heading/2, gradient from-23% navy 80% opacity
 
 const projects = [
-  { anchor: 'florida-mega-factory', tag: 'Factory Design · Florida',  title: 'Florida Mega Factory',   meta: 'Full-facility modular manufacturing plant', category: 'factory', img: '/img/projects/Florida Mega Factory.webp', featured: true },
-  { anchor: 'tutemok',              tag: 'Modular Building · AZ',     title: 'Tutemok',                 meta: 'Architectural design · BIM compliant',       category: 'modular', img: '/img/projects/Tutemok.webp' },
-  { anchor: 'factory-one',          tag: 'Factory Design',            title: 'Factory One',             meta: 'Plant layout · lean manufacturing',          category: 'factory', img: '/img/projects/Factory One.webp' },
-  { anchor: 'factory-two',          tag: 'Factory Design · Sketch',   title: 'Factory Two',             meta: 'Concept to construction docs',               category: 'factory', img: '/img/projects/Factory Two.webp' },
-  { anchor: 'on-site-preparation',  tag: 'Site Development',          title: 'On-site Preparation',     meta: 'Grading · utilities · foundation',           category: 'site',    img: '/img/projects/On-Site.webp' },
+  { anchor: 'florida-mega-factory',    tag: 'Factory Design · Florida',        title: 'Florida Mega Factory',    meta: 'Full-facility modular manufacturing plant',  category: 'factory', img: '/img/projects/Florida Mega Factory.webp', featured: true },
+  { anchor: 'ava-modular',             tag: 'Factory Design · MN',             title: 'AVA Modular',             meta: 'Greenfield factory · workforce training',    category: 'factory', img: '/img/projects/AVA Modular.webp' },
+  { anchor: 'fading-west',             tag: 'Factory Design · CO',             title: 'Fading West',             meta: 'Concept through full operation',             category: 'factory', img: '/img/projects/Fading West.webp' },
+  { anchor: 'bouldermod',              tag: 'Factory Design · CO',             title: 'BoulderMOD',              meta: 'Modular factory + training facility',        category: 'factory', img: '/img/projects/BoulderMOD.webp' },
+  { anchor: 'full-stack-modular-west', tag: 'Factory Design · CA',             title: 'Full Stack Modular West', meta: 'Multi-line production system',               category: 'factory', img: '/img/projects/Full Stack Modular West.webp' },
 ];
 const filters = [
   { label: 'All Projects',      key: 'all'    },
   { label: 'Factory Design',    key: 'factory' },
   { label: 'Modular Buildings', key: 'modular' },
   { label: 'Site Development',  key: 'site'    },
-];
+].filter(f => f.key === 'all' || projects.some(p => p.category === f.key));
+const showFilters = filters.length > 2;
 ---
 
 <section class="projects-gallery">
@@ -34,13 +35,13 @@ const filters = [
       </p>
     </div>
 
-    <div class="projects-gallery__filters" role="group" aria-label="Filter projects">
+    {showFilters && <div class="projects-gallery__filters" role="group" aria-label="Filter projects">
       {filters.map((f, i) => (
         <button class:list={['filter-btn', { 'filter-btn--active': i === 0 }]} data-filter={f.key}>
           {f.label}
         </button>
       ))}
-    </div>
+    </div>}
 
     <div class="projects-gallery__grid" id="projects-grid">
       {projects.map(project => (
@@ -65,7 +66,6 @@ const filters = [
     </div>
 
     <div class="projects-gallery__footer">
-      <span class="projects-gallery__count">Showing <strong id="project-count">5</strong> of 12 projects</span>
       <a href="/projects" class="btn-ghost btn-ghost--small">View All Projects →</a>
     </div>
   </div>
@@ -136,9 +136,7 @@ const filters = [
   }
   .project-card:hover .project-card__arrow { opacity: 1; }
 
-  .projects-gallery__footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 0.5px solid rgba(255,255,255,0.06); }
-  .projects-gallery__count  { font-size: 10px; color: var(--color-text-faint); }
-  .projects-gallery__count strong { color: var(--color-blue-light); }
+  .projects-gallery__footer { display: flex; align-items: center; justify-content: flex-end; padding-top: 16px; border-top: 0.5px solid rgba(255,255,255,0.06); }
 
   @media (max-width: 1024px) { .projects-gallery__grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; } .project-card--featured { grid-column: span 2; height: 200px; } .project-card { height: 150px; } }
   @media (max-width: 768px)  { .projects-gallery__inner { padding: 48px 24px; } .projects-gallery__grid { grid-template-columns: 1fr; grid-template-rows: auto; } .project-card--featured, .project-card { grid-column: span 1; height: 160px; } }
@@ -147,19 +145,15 @@ const filters = [
 <script>
   const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
   const cards = document.querySelectorAll<HTMLElement>('.project-card');
-  const countEl = document.getElementById('project-count');
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter!;
       filterBtns.forEach(b => b.classList.remove('filter-btn--active'));
       btn.classList.add('filter-btn--active');
-      let visible = 0;
       cards.forEach(card => {
         const match = filter === 'all' || card.dataset.category === filter;
         card.style.display = match ? '' : 'none';
-        if (match) visible++;
       });
-      if (countEl) countEl.textContent = String(visible);
     });
   });
 </script>

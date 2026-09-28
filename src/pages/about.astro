@@ -44,7 +44,7 @@ const team = [
     email: 'jcarter@themodsquadteam.com',
   },
   {
-    img: '/img/team/JaimeMillan_COO.webp',
+    img: '/img/team/JaimeMillan_COO_2026.webp',
     imgPosition: 'top',
     role: 'Production Systems & Factory Development, Canada',
     name: 'Jaime Millan',
@@ -52,14 +52,14 @@ const team = [
     email: 'jmillan@themodsquadteam.com',
   },
   {
-    img: '/img/team/RogerLankford_CFo.webp',
+    img: '/img/team/RogerLankford_CFO_2026.webp',
     role: 'Financial Strategy & Capital Stewardship',
     name: 'Roger Lankford',
     bio: 'Brings over 35 years of experience in financial planning, underwriting, and capital strategy across complex development and infrastructure initiatives. His background in structuring multi-million-dollar programs and long-term financial stewardship connects operational execution with responsible capital planning.',
     email: 'rlankford@themodsquadteam.com',
   },
   {
-    img: '/img/team/ClairsonDutra_StructuralEngineering.webp',
+    img: '/img/team/ClairsonDutra_StructuralEngineering_2026.webp',
     role: 'Structural Engineering & Technical Systems',
     name: 'Dr. Clairson Dutra',
     bio: 'A structural engineer with over 20 years of experience in steel, concrete, and wood systems for multifamily and modular construction. As a PhD engineer and licensed builder, he brings deep technical expertise to factory-based building platforms — supporting the alignment of structural design, product standardization, and manufacturing feasibility.',
@@ -89,6 +89,17 @@ const jobCategories = [
     ],
   },
 ];
+
+// Talent network: button opens a pre-filled email for sending a resume
+const recruitEmail = 'jcarter@themodsquadteam.com';
+const resumeSubject = encodeURIComponent('Talent Network – Resume');
+const resumeBody = encodeURIComponent(
+  'Hi Mod Squad team,\n\nI would like to join your talent network.\n\nName:\nPhone:\nLocation:\nArea of interest:\n\nMy resume is attached.\n'
+);
+const resumeMailto  = `mailto:${recruitEmail}?subject=${resumeSubject}&body=${resumeBody}`;
+// Web-mail fallbacks for visitors without a desktop email app
+const resumeGmail   = `https://mail.google.com/mail/?view=cm&fs=1&to=${recruitEmail}&su=${resumeSubject}&body=${resumeBody}`;
+const resumeOutlook = `https://outlook.office.com/mail/deeplink/compose?to=${recruitEmail}&subject=${resumeSubject}&body=${resumeBody}`;
 ---
 
 <BaseLayout
@@ -231,10 +242,10 @@ const jobCategories = [
             <span class="eyebrow-text eyebrow-text--blue">Talent Acquisition</span>
           </div>
           <h2 class="recruitment__title">
-            Join the <span class="recruitment__title--blue">Mod Squad.</span>
+            Mod Squad <span class="recruitment__title--blue">Recruiting</span>
           </h2>
           <p class="recruitment__desc">
-            We're always looking for specialists in factory engineering, production operations, and modular construction who want to work on platforms that actually perform.
+            We connect experienced professionals in factory engineering, production operations, and modular construction with opportunities across our industry network.
           </p>
         </div>
 
@@ -262,24 +273,19 @@ const jobCategories = [
         <!-- Contact form -->
         <div class="recruitment__contact slide-up" style="--delay: 300ms">
           <div class="recruitment__contact-info">
-            <h3 class="recruitment__contact-title">Contact Regarding a Listing</h3>
-            <p class="recruitment__contact-desc">Reach out directly and we'll get back to you within 24 hours.</p>
-            <div class="recruitment__contact-details">
-              <a href="tel:7276475022" class="recruitment__contact-link">727-647-5022</a>
-              <a href="mailto:jcarter@themodsquadteam.com" class="recruitment__contact-link">jcarter@themodsquadteam.com</a>
-            </div>
+            <h3 class="recruitment__contact-title">Join Our Talent Network</h3>
+            <p class="recruitment__contact-desc">Send us your resume and career interests. We’ll reach out when the right opportunity comes up.</p>
           </div>
-          <form class="recruitment__form" action="https://formspree.io/f/xykldkgw" method="POST">
-            <div class="recruitment__form-row">
-              <input type="text" name="name" placeholder="Full Name*" required class="recruitment__input" />
-              <input type="tel" name="phone" placeholder="Phone" class="recruitment__input" />
-            </div>
-            <div class="recruitment__form-row">
-              <input type="email" name="email" placeholder="Email*" required class="recruitment__input" />
-              <input type="text" name="position" placeholder="Position of Interest" class="recruitment__input" />
-            </div>
-            <button type="submit" class="recruitment__submit">Submit Application</button>
-          </form>
+          <div class="recruitment__resume">
+            <a href={resumeMailto} class="recruitment__submit">Send Your Resume →</a>
+            <p class="recruitment__resume-note">
+              Use web email? Open in
+              <a href={resumeGmail} target="_blank" rel="noopener" class="recruitment__webmail">Gmail</a> or
+              <a href={resumeOutlook} target="_blank" rel="noopener" class="recruitment__webmail">Outlook</a>
+            </p>
+            <p class="recruitment__resume-note">Or send your resume to:</p>
+            <a href={`mailto:${recruitEmail}`} class="recruitment__contact-link">{recruitEmail}</a>
+          </div>
         </div>
 
       </div>
@@ -491,7 +497,7 @@ const jobCategories = [
 }
 .job-card__apply:hover { opacity: 0.7; }
 
-/* Contact form */
+/* Resume / talent network */
 .recruitment__contact {
   background: var(--color-navy); border-radius: var(--radius-lg); padding: 32px;
   display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; align-items: start;
@@ -499,21 +505,14 @@ const jobCategories = [
 .recruitment__contact-info { display: flex; flex-direction: column; gap: 16px; }
 .recruitment__contact-title { font-size: var(--font-h2); font-weight: var(--fw-bold); color: var(--color-white); line-height: 1.2; }
 .recruitment__contact-desc { font-size: var(--font-body); color: var(--color-text-faint); line-height: 20px; }
-.recruitment__contact-details { display: flex; flex-direction: column; gap: 8px; }
 .recruitment__contact-link { font-size: var(--font-body-lg); color: var(--color-blue-light); font-weight: var(--fw-medium); transition: opacity 0.15s; }
 .recruitment__contact-link:hover { opacity: 0.75; }
 
-.recruitment__form { display: flex; flex-direction: column; gap: 12px; }
-.recruitment__form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.recruitment__input {
-  background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.12);
-  border-radius: var(--radius-md); padding: 0 14px; height: 44px;
-  font-size: var(--font-body-sm); font-family: var(--font-family);
-  color: var(--color-white); width: 100%;
-  transition: border-color 0.15s;
-}
-.recruitment__input::placeholder { color: rgba(255,255,255,0.3); }
-.recruitment__input:focus { outline: none; border-color: var(--color-blue); }
+.recruitment__resume { display: flex; flex-direction: column; gap: 12px; align-self: center; }
+.recruitment__resume-note { font-size: var(--font-body-sm); color: var(--color-text-faint); margin-top: 8px; }
+.recruitment__webmail { color: var(--color-blue-light); font-weight: var(--fw-medium); text-decoration: underline; text-underline-offset: 3px; }
+.recruitment__webmail:hover { opacity: 0.75; }
+.recruitment__resume-note + .recruitment__resume-note { margin-top: 0; }
 .recruitment__submit {
   display: inline-flex; align-items: center; justify-content: center;
   background: var(--color-blue); color: var(--color-white);
@@ -543,7 +542,6 @@ const jobCategories = [
   .team-card__bio       { width: 100%; }
   .recruitment__inner   { padding: 48px 24px; }
   .recruitment__contact { grid-template-columns: 1fr; gap: 32px; }
-  .recruitment__form-row { grid-template-columns: 1fr; }
   .recruitment__submit  { width: 100%; }
 }
 </style>
