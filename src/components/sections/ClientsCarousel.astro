@@ -10,7 +10,7 @@ const clients = [
   { name: 'EcoMod',                       img: '/img/clients/ecomod_logo_nobg.png' },
   { name: 'Evozome',                      img: '/img/clients/evozone_logo_nobg.png' },
   { name: 'Rise Modular',                 img: '/img/clients/RISE_LOGO.svg' },
-  { name: 'Turafab',                      img: '/img/clients/tf_modular_logo_nobg.png' },
+  { name: 'Turafab',                      img: '/img/clients/turafab_logo_nobg.png' },
   { name: 'United Tiny Homes',            img: '/img/clients/united_tiny_homes_nobg.png' },
   { name: 'Colorado Health Foundation',   img: '/img/clients/the_colorado_health_foundation_nobg.png' },
   { name: 'Habitat for Humanity',         img: '/img/clients/Logo_Habitat_for_Humanity_nobg.png' },
@@ -22,10 +22,16 @@ const clients = [
   { name: 'Full Stack Modular',           img: '/img/clients/full_stack_modular_logo_nobg.png' },
   { name: 'Hopewell 360',                 img: '/img/clients/hopewell 360_nobg.png' },
   { name: 'Custom Touch Homes',           img: '/img/clients/costum-touch-homes_nobg.png' },
+  { name: 'Canadian Modular Systems',     img: '/img/clients/cms_logo_nobg.png' },
+  { name: 'Frameclad',                    img: '/img/clients/frameclad_logo_nobg.png' },
+  { name: 'Vantem',                       img: '/img/clients/vantem_logo_nobg.png' },
 ];
 
 // Duplicate for seamless infinite loop
 const doubled = [...clients, ...clients];
+
+// Keep scroll speed constant as logos are added (seconds per logo)
+const duration = `${clients.length * 2}s`;
 ---
 
 <section class="clients">
@@ -38,14 +44,15 @@ const doubled = [...clients, ...clients];
   </div>
 
   <div class="clients__track-wrap">
-    <div class="clients__track">
+    <div class="clients__track" style={`--duration: ${duration}`}>
       {doubled.map(client => (
         <div class="clients__logo-wrap">
           <img
             src={client.img}
             alt={client.name}
             class="clients__logo"
-            loading="lazy"
+            loading="eager"
+            decoding="async"
             onerror="this.style.display='none'"
           />
         </div>
@@ -85,9 +92,8 @@ const doubled = [...clients, ...clients];
 
   .clients__track {
     display: flex;
-    gap: 40px;
     width: max-content;
-    animation: scroll-left 40s linear infinite;
+    animation: scroll-left var(--duration, 40s) linear infinite;
   }
   .clients__track:hover { animation-play-state: paused; }
 
@@ -99,6 +105,8 @@ const doubled = [...clients, ...clients];
   .clients__logo-wrap {
     display: flex; align-items: center; justify-content: center;
     height: 56px; width: 160px; flex-shrink: 0;
+    /* Spacing via margin (not gap) so -50% lands exactly on the copy — no jump */
+    margin-right: 40px;
     opacity: 0.9;
     transition: opacity 0.3s;
   }
@@ -113,8 +121,7 @@ const doubled = [...clients, ...clients];
   @media (max-width: 768px) {
     .clients { padding: 64px 0; }
     .clients__inner { padding: 0 24px; }
-    .clients__track { gap: 48px; }
-    .clients__logo-wrap { width: 140px; height: 56px; padding: 0 8px; }
+    .clients__logo-wrap { width: 140px; height: 56px; padding: 0 8px; margin-right: 48px; }
     .clients__logo { max-height: 48px; max-width: 120px; }
   }
 </style>
