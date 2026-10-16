@@ -6,10 +6,12 @@
   <!-- Background video (YouTube) -->
   <div class="hero__video-wrap">
     <iframe
+      id="hero-video"
       class="hero__video"
-      src="https://www.youtube.com/embed/MYetOYNktrA?autoplay=1&mute=1&loop=1&playlist=MYetOYNktrA&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
+      src="https://www.youtube.com/embed/MYetOYNktrA?enablejsapi=1&autoplay=1&mute=1&playsinline=1&loop=1&playlist=MYetOYNktrA&controls=0&rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=0&disablekb=1&fs=0"
+      title="AVA Modular factory video"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      referrerpolicy="strict-origin-when-cross-origin"
       tabindex="-1"
       aria-hidden="true"
     ></iframe>
@@ -41,6 +43,35 @@
   </div>
 </section>
 
+<script>
+  // Reveal the background video only once it is playing; otherwise the
+  // fallback photo behind it stays visible.
+  const wrap = document.querySelector('.hero__video-wrap');
+  if (wrap) {
+    (window as any).onYouTubeIframeAPIReady = () => {
+      const YT = (window as any).YT;
+      new YT.Player('hero-video', {
+        events: {
+          onReady: (e: any) => { e.target.mute(); e.target.playVideo(); },
+          onStateChange: (e: any) => {
+            const S = YT.PlayerState;
+            if (e.data === S.PLAYING) {
+              // YouTube turns on auto-captions for some viewers; hide them
+              e.target.unloadModule?.('captions');
+              e.target.unloadModule?.('cc');
+              wrap.classList.add('is-playing');
+            }
+            else if (e.data === S.PAUSED || e.data === S.CUED || e.data === S.UNSTARTED) wrap.classList.remove('is-playing');
+          },
+        },
+      });
+    };
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  }
+</script>
+
 <style>
   .hero {
     position: relative;
@@ -56,6 +87,8 @@
     position: absolute; inset: 0;
     z-index: 0; overflow: hidden;
     pointer-events: none;
+    /* Fallback if the video can't autoplay (e.g. iPhone Low Power Mode) */
+    background: var(--color-navy, #0d1b2e) url('/img/projects/AVA Modular.webp') center / cover no-repeat;
   }
   .hero__video {
     position: absolute;
@@ -67,7 +100,12 @@
     transform: translate(-50%, -50%);
     border: none;
     pointer-events: none;
+    /* Hidden until YouTube reports it is actually playing, so a failed
+       autoplay never shows YouTube's paused screen over the hero */
+    opacity: 0;
+    transition: opacity 0.8s ease;
   }
+  .hero__video-wrap.is-playing .hero__video { opacity: 1; }
 
   /* Dark overlay so text stays readable */
   .hero__overlay {
